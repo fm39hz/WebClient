@@ -1,12 +1,15 @@
 import { Text } from '@chakra-ui/react'
 import { Bars3Icon } from '@heroicons/react/24/solid'
-import { ButtonBase } from '@mui/material'
+import { Button } from '@material-tailwind/react'
 
 export default function CategoryIcon() {
 	return (
-		<ButtonBase className="border-2 rounded-xl" onClick={() => {}}>
-			<Bars3Icon className="w-12 h-12" />
+		<Button
+			className="flex flex-row items-center rounded-xl my-0.5"
+			onClick={() => {}}
+		>
+			<Bars3Icon className="w-8 h-8" />
 			<Text className="mr-2">Danh mục</Text>
-		</ButtonBase>
+		</Button>
 	)
 }

@@ -1,14 +1,16 @@
 import { Flex } from '@chakra-ui/react'
-import MenuIcon from './MenuIcon'
-import CategoryIcon from './CategoryIcon'
-import SearchBar from './SearchBar'
-import LogInButton from './LogInButton'
+import MenuIcon from './Items/MenuIcon'
+import CategoryIcon from './Items/CategoryIcon'
+import SearchBar from './Items/SearchBar'
+import LogInButton from './Items/LogInButton'
+import CartButton from './Items/CartButton'
 
 const MenuBar = () => (
-	<Flex className="flex-row m-2 bg-red-500 justify-center">
+	<Flex className="flex-row m-2 bg-lime-800 justify-center gap-x-2">
 		<MenuIcon />
 		<CategoryIcon />
 		<SearchBar />
+		<CartButton />
 		<LogInButton />
 	</Flex>
 )
