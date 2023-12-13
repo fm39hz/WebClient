@@ -1,4 +1,4 @@
-import SignUp from 'pages/SignUp'
+import SignIn from 'pages/SignIn'
 import HomePage from 'pages/HomePage'
 import { Route, Routes } from 'react-router-dom'
 const publicRoutes = [
@@ -9,8 +9,8 @@ const publicRoutes = [
 	},
 	{
 		id: 1,
-		path: '/SignUp',
-		component: <SignUp />,
+		path: '/SignIn',
+		component: <SignIn />,
 	},
 ]
 const MainPages = () => {
