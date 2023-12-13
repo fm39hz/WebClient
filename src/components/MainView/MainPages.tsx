@@ -19,8 +19,8 @@ const MainPages = () => {
 			{publicRoutes.map(({ id, path, component }) => (
 				<Route
 					caseSensitive={true}
-					path={path}
 					key={id}
+					path={path}
 					element={component}
 				/>
 			))}

@@ -1,14 +1,13 @@
-import { Text } from '@chakra-ui/react'
 import { UserIcon } from '@heroicons/react/24/solid'
 import { Button } from '@material-tailwind/react'
+import { Link } from 'react-router-dom'
 
 const LogInButton = () => (
-	<Button
-		className="flex flex-row items-center rounded-xl my-0.5 bg-inherit"
-		onClick={() => {}}
-	>
+	<Button className="flex flex-row items-center rounded-xl my-0.5 bg-inherit">
 		<UserIcon className="w-8 h-8 mx-2" />
-		<Text className="mr-2">Đăng nhập</Text>
+		<Link className="mr-2" to="/SingUp">
+			Đăng nhập
+		</Link>
 	</Button>
 )
 

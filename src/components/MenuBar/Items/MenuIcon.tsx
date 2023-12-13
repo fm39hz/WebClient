@@ -1,10 +1,10 @@
 import { ComputerDesktopIcon } from '@heroicons/react/24/solid'
-import { Button } from '@material-tailwind/react'
+import { Link } from 'react-router-dom'
 
 const MenuIcon = () => (
-	<Button className="rounded-xl my-0.5 bg-inherit" onClick={() => {}}>
+	<Link className="mr-2" to="/">
 		<ComputerDesktopIcon className="w-8 h-8" />
-	</Button>
+	</Link>
 )
 
 export default MenuIcon
