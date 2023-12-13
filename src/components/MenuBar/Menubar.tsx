@@ -6,7 +6,7 @@ import LogInButton from './Items/LogInButton'
 import CartButton from './Items/CartButton'
 
 const MenuBar = () => (
-	<Flex className="flex-row m-2 bg-lime-800 justify-center gap-x-2">
+	<Flex className="m-2 bg-[#FF3E3E] items-center justify-center gap-x-2">
 		<MenuIcon />
 		<CategoryIcon />
 		<SearchBar />
