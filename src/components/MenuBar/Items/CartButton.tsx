@@ -8,7 +8,7 @@ const CartButton = () => (
 		onClick={() => {}}
 	>
 		<Badge
-			content="5"
+			content={5}
 			overlap="circular"
 			placement="top-end"
 			color="orange"
