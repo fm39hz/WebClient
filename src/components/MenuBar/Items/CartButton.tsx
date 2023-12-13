@@ -4,7 +4,7 @@ import { Badge, Button } from '@material-tailwind/react'
 
 const CartButton = () => (
 	<Button
-		className="rounded-xl flex flex-row items-center my-0.5"
+		className="rounded-xl flex flex-row items-center my-0.5 bg-inherit"
 		onClick={() => {}}
 	>
 		<Badge

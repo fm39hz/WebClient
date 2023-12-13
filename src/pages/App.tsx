@@ -3,7 +3,7 @@ import MenuBar from '../components/MenuBar/Menubar'
 import MainPages from '../components/MainView/MainPages'
 
 const App = () => (
-	<Flex className="flex-col bg-black text-white h-screen w-full">
+	<Flex className="flex-col bg-white text-black h-screen w-full">
 		<MenuBar />
 		<MainPages />
 	</Flex>

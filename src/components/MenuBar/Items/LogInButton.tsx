@@ -4,7 +4,7 @@ import { Button } from '@material-tailwind/react'
 
 const LogInButton = () => (
 	<Button
-		className="flex flex-row items-center rounded-xl my-0.5"
+		className="flex flex-row items-center rounded-xl my-0.5 bg-inherit"
 		onClick={() => {}}
 	>
 		<UserIcon className="w-8 h-8 mx-2" />

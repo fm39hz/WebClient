@@ -5,8 +5,8 @@ import { Input } from '@mui/material'
 
 const SearchBar = () => (
 	<Flex className="flex-row bg-white my-0.5 rounded-sm text-black items-center">
-		<Input className="text-sm m-2 w-96" placeholder="Bạn muốn tìm gì?" />
-		<IconButton className="bg-white text-black ">
+		<Input className="text-sm m-2 w-96" placeholder="Bạn cần tìm gì?" />
+		<IconButton className="bg-inherit text-inherit">
 			<MagnifyingGlassIcon className="w-5 h-5 my-3" />
 		</IconButton>
 	</Flex>
