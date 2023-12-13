@@ -1,13 +1,13 @@
-import MenuBar from './Menubar'
+import { Flex } from '@chakra-ui/react'
+import MenuBar from './MenuBar/Menubar'
+import MainPages from './MainView/MainPages'
 
 function App() {
 	return (
-		<div className="flex flex-col bg-black text-white h-screen w-full">
+		<Flex className="flex-col bg-black text-white h-screen w-full">
 			<MenuBar />
-			<div className="text-center text-2xl">
-				<div>Body</div>
-			</div>
-		</div>
+			<MainPages />
+		</Flex>
 	)
 }
 
