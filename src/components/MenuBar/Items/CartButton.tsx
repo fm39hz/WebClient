@@ -1,4 +1,4 @@
-import { Flex, Text } from '@chakra-ui/react'
+import { Text } from '@chakra-ui/react'
 import { ShoppingCartIcon } from '@heroicons/react/24/solid'
 import { Badge, Button } from '@material-tailwind/react'
 
