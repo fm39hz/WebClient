@@ -2,7 +2,7 @@ import { Flex } from '@chakra-ui/react'
 import MenuIcon from './Items/MenuIcon'
 import CategoryIcon from './Items/CategoryIcon'
 import SearchBar from './Items/SearchBar'
-import LogInButton from './Items/LogInButton'
+import SignInButton from './Items/LogInButton'
 import CartButton from './Items/CartButton'
 
 const MenuBar = () => (
@@ -11,7 +11,7 @@ const MenuBar = () => (
 		<CategoryIcon />
 		<SearchBar />
 		<CartButton />
-		<LogInButton />
+		<SignInButton />
 	</Flex>
 )
 export default MenuBar
