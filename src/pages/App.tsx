@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react'
-import MenuBar from './MenuBar/Menubar'
-import MainPages from './MainView/MainPages'
+import MenuBar from '../components/MenuBar/Menubar'
+import MainPages from '../components/MainView/MainPages'
 
 function App() {
 	return (
