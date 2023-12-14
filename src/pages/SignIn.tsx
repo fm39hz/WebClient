@@ -1,8 +1,10 @@
+import { useState } from 'react';
+import { Input } from '@mui/material';
 import { Flex } from '@chakra-ui/react';
 import { Button } from '@material-tailwind/react';
-import { Input } from '@mui/material';
 import { GetApi, ServiceEndPoint } from 'Constant';
-import { useState } from 'react';
+import { GetItem, SetItem } from 'utils/StorageUtils';
+import { EyeIcon } from '@heroicons/react/24/solid';
 
 const BuildOption = (email: string, password: string) => {
 	return {
@@ -26,25 +28,27 @@ const SignIn = () => {
 				placeholder="Email"
 				onChange={(event) => setEmail(event.target.value)}
 			/>
-			<Input
-				className="text-sm bg-white rounded-lg m-2 w-40"
-				placeholder="Mật khẩu"
-				onChange={(event) => setPassword(event.target.value)}
-			/>
+			<Flex className="text-sm bg-white rounded-lg m-2 w-40">
+				<Input
+					type="password"
+					placeholder="Mật khẩu"
+					onChange={(event) => setPassword(event.target.value)}
+				/>
+			</Flex>
 			<Button
 				className="bg-[#E30019] text-white"
-				onClick={() => {
+				onClick={() =>
 					fetch(
 						GetApi(ServiceEndPoint.login),
 						BuildOption(email, password),
 					)
-						.then((response) => {
-							return response.text();
-						})
-						.then((data) => {
-							console.log(data);
-						});
-				}}
+						.then(async (response) =>
+							response.status == 200
+								? SetItem('credential', await response.text())
+								: alert(response.statusText),
+						)
+						.then(() => console.log(GetItem('credential')))
+				}
 			>
 				Đăng nhập
 			</Button>
