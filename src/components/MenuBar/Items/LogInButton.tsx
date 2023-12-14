@@ -1,6 +1,6 @@
-import { UserIcon } from '@heroicons/react/24/solid'
-import { Button } from '@material-tailwind/react'
-import { Link } from 'react-router-dom'
+import { UserIcon } from '@heroicons/react/24/solid';
+import { Button } from '@material-tailwind/react';
+import { Link } from 'react-router-dom';
 
 const SignInButton = () => (
 	<Button className="flex flex-row items-center rounded-xl my-0.5 bg-inherit">
@@ -9,6 +9,6 @@ const SignInButton = () => (
 			Đăng nhập
 		</Link>
 	</Button>
-)
+);
 
-export default SignInButton
+export default SignInButton;

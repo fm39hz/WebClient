@@ -1,7 +1,7 @@
-import { Flex } from '@chakra-ui/react'
-import { MagnifyingGlassIcon } from '@heroicons/react/24/solid'
-import { IconButton } from '@material-tailwind/react'
-import { Input } from '@mui/material'
+import { Flex } from '@chakra-ui/react';
+import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
+import { IconButton } from '@material-tailwind/react';
+import { Input } from '@mui/material';
 
 const SearchBar = () => (
 	<Flex className="flex-row bg-white my-0.5 rounded-sm text-black items-center">
@@ -10,5 +10,5 @@ const SearchBar = () => (
 			<MagnifyingGlassIcon className="w-5 h-5 my-3" />
 		</IconButton>
 	</Flex>
-)
-export default SearchBar
+);
+export default SearchBar;

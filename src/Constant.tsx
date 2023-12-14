@@ -4,6 +4,6 @@ export const enum ServiceEndPoint {
 	cpu = '/Cpus',
 	users = '/Users',
 }
-export const WebServiceApi = 'http://localhost:5234/api'
+export const WebServiceApi = 'http://localhost:5234/api';
 export const GetApi = (endPoint: ServiceEndPoint) =>
-	WebServiceApi.concat(endPoint)
+	WebServiceApi.concat(endPoint);

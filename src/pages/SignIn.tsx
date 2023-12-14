@@ -1,12 +1,24 @@
-import { Flex } from '@chakra-ui/react'
-import { Button } from '@material-tailwind/react'
-import { Input } from '@mui/material'
-import { GetApi, ServiceEndPoint } from 'Constant'
-import { useState } from 'react'
+import { Flex } from '@chakra-ui/react';
+import { Button } from '@material-tailwind/react';
+import { Input } from '@mui/material';
+import { GetApi, ServiceEndPoint } from 'Constant';
+import { useState } from 'react';
 
+const BuildOption = (email: string, password: string) => {
+	return {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({
+			email: email,
+			password: password,
+		}),
+	};
+};
 const SignIn = () => {
-	const [email, setEmail] = useState('')
-	const [password, setPassword] = useState('')
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 	return (
 		<Flex className="flex-col my-0.5 rounded-sm items-center justify-center">
 			<Input
@@ -22,26 +34,22 @@ const SignIn = () => {
 			<Button
 				className="bg-[#E30019] text-white"
 				onClick={() => {
-					const requestOptions = {
-						method: 'POST',
-						body: JSON.stringify({
-							email: email,
-							password: password,
-						}),
-					}
-					fetch(GetApi(ServiceEndPoint.login), requestOptions)
+					fetch(
+						GetApi(ServiceEndPoint.login),
+						BuildOption(email, password),
+					)
 						.then((response) => {
-							return response.json()
+							return response.text();
 						})
 						.then((data) => {
-							console.log(data)
-						})
+							console.log(data);
+						});
 				}}
 			>
 				Đăng nhập
 			</Button>
 		</Flex>
-	)
-}
+	);
+};
 
-export default SignIn
+export default SignIn;

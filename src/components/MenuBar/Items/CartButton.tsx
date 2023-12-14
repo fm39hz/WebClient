@@ -1,6 +1,6 @@
-import { Text } from '@chakra-ui/react'
-import { ShoppingCartIcon } from '@heroicons/react/24/solid'
-import { Badge, Button } from '@material-tailwind/react'
+import { Text } from '@chakra-ui/react';
+import { ShoppingCartIcon } from '@heroicons/react/24/solid';
+import { Badge, Button } from '@material-tailwind/react';
 
 const CartButton = () => (
 	<Button
@@ -17,6 +17,6 @@ const CartButton = () => (
 		</Badge>
 		<Text className="mr-2">Giỏ hàng</Text>
 	</Button>
-)
+);
 
-export default CartButton
+export default CartButton;

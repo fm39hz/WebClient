@@ -1,12 +1,12 @@
-import { Flex } from '@chakra-ui/react'
-import MenuBar from '../components/MenuBar/Menubar'
-import MainPages from '../components/MainView/MainPages'
+import { Flex } from '@chakra-ui/react';
+import MenuBar from '../components/MenuBar/Menubar';
+import MainPages from '../components/MainView/MainPages';
 
 const App = () => (
 	<Flex className="flex-col bg-black text-white h-screen w-full">
 		<MenuBar />
 		<MainPages />
 	</Flex>
-)
+);
 
-export default App
+export default App;

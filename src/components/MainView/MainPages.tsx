@@ -1,6 +1,6 @@
-import SignIn from 'pages/SignIn'
-import HomePage from 'pages/HomePage'
-import { Route, Routes } from 'react-router-dom'
+import SignIn from 'pages/SignIn';
+import HomePage from 'pages/HomePage';
+import { Route, Routes } from 'react-router-dom';
 const publicRoutes = [
 	{
 		id: 0,
@@ -12,7 +12,7 @@ const publicRoutes = [
 		path: '/SignIn',
 		component: <SignIn />,
 	},
-]
+];
 const MainPages = () => {
 	return (
 		<Routes>
@@ -25,7 +25,7 @@ const MainPages = () => {
 				/>
 			))}
 		</Routes>
-	)
-}
+	);
+};
 
-export default MainPages
+export default MainPages;
