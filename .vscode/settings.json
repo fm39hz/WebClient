@@ -5,8 +5,8 @@
   "editor.formatOnType": true,
   "editor.formatOnSaveMode": "modifications",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.removeUnusedImports": true
+    "source.fixAll.eslint": "always",
+    "source.removeUnusedImports": "always"
   },
   "files.associations": {
     "*.css": "tailwindcss"
