@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { Input } from '@mui/material';
-import { Flex } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import { Button } from '@material-tailwind/react';
 import { GetApi, ServiceEndPoint } from 'Constant';
 import { GetItem, SetItem } from 'utils/StorageUtils';
-import { EyeIcon } from '@heroicons/react/24/solid';
+import InputField from 'components/InteractField/InputField';
 
 const BuildOption = (email: string, password: string) => {
 	return {
@@ -21,35 +20,29 @@ const BuildOption = (email: string, password: string) => {
 const SignIn = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	let signIn = async () => {
+		const response = await fetch(
+			GetApi(ServiceEndPoint.login),
+			BuildOption(email, password),
+		);
+		response.status == 200
+			? SetItem('credential', await response.text())
+			: alert(response.statusText);
+	};
 	return (
 		<Flex className="flex-col my-0.5 rounded-sm items-center justify-center">
-			<Input
-				className="text-sm bg-white rounded-lg m-2 w-40"
-				placeholder="Email"
-				onChange={(event) => setEmail(event.target.value)}
+			<Text>Đăng nhập</Text>
+			<InputField
+				inputValue="Email"
+				isPassword={false}
+				getValue={(event) => setEmail(event.target.value)}
 			/>
-			<Flex className="text-sm bg-white rounded-lg m-2 w-40">
-				<Input
-					type="password"
-					placeholder="Mật khẩu"
-					onChange={(event) => setPassword(event.target.value)}
-				/>
-			</Flex>
-			<Button
-				className="bg-[#E30019] text-white"
-				onClick={() =>
-					fetch(
-						GetApi(ServiceEndPoint.login),
-						BuildOption(email, password),
-					)
-						.then(async (response) =>
-							response.status == 200
-								? SetItem('credential', await response.text())
-								: alert(response.statusText),
-						)
-						.then(() => console.log(GetItem('credential')))
-				}
-			>
+			<InputField
+				inputValue="Mật khẩu"
+				isPassword={true}
+				getValue={(event) => setPassword(event.target.value)}
+			/>
+			<Button className="bg-[#E30019] text-white" onClick={() => signIn}>
 				Đăng nhập
 			</Button>
 		</Flex>
