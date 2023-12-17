@@ -4,7 +4,7 @@ import CategoryIcon from './Items/CategoryIcon';
 import SearchBar from './Items/SearchBar';
 import SignInIcon from './Items/SignInIcon';
 import CartIcon from './Items/CartIcon';
-import UserIcon from './Items/UserIcon';
+import SignedInIcon from './Items/SignedInIcon';
 
 type MenuBarProps = {
 	isSignedIn: boolean;
@@ -17,7 +17,7 @@ const MenuBar = (props: MenuBarProps) => {
 			<CategoryIcon />
 			<SearchBar />
 			<CartIcon />
-			{props.isSignedIn ? <UserIcon /> : <SignInIcon />}
+			{props.isSignedIn ? <SignedInIcon /> : <SignInIcon />}
 		</Flex>
 	);
 };
