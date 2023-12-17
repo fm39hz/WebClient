@@ -17,6 +17,11 @@ const MainPages = (props: MainPageProps) => {
 		},
 		{
 			id: 1,
+			path: '/Home',
+			component: <HomePage />,
+		},
+		{
+			id: 2,
 			path: '/SignIn',
 			component: (
 				<SignInPage
