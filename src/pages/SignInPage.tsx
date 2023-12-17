@@ -1,9 +1,14 @@
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { Flex, Text } from '@chakra-ui/react';
 import { Button } from '@material-tailwind/react';
 import { SetItem } from 'utils/StorageUtils';
 import { GetApi, ServiceEndPoint } from 'Constant';
 import InputField from 'components/InteractField/InputField';
+
+type SignInProps = {
+	setSignedIn: Dispatch<SetStateAction<boolean>>;
+	isSignedIn: boolean;
+};
 
 const BuildOption = (email: string, password: string) => {
 	return {
@@ -17,18 +22,10 @@ const BuildOption = (email: string, password: string) => {
 		}),
 	};
 };
-const SignInPage = () => {
+
+const SignInPage = (props: SignInProps) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	let signIn = async () => {
-		const response = await fetch(
-			GetApi(ServiceEndPoint.login),
-			BuildOption(email, password),
-		);
-		response.status == 200
-			? SetItem('credential', await response.text())
-			: alert(response.statusText);
-	};
 	return (
 		<Flex className="flex-col my-0.5 rounded-sm items-center justify-center">
 			<Text>Đăng nhập</Text>
@@ -42,7 +39,21 @@ const SignInPage = () => {
 				isPassword={true}
 				getValue={(event) => setPassword(event.target.value)}
 			/>
-			<Button className="bg-[#E30019] text-white" onClick={() => signIn}>
+			<Button
+				className="bg-[#E30019] text-white"
+				onClick={async () => {
+					const response = await fetch(
+						GetApi(ServiceEndPoint.login),
+						BuildOption(email, password),
+					);
+					if (response.status == 200) {
+						SetItem('credential', await response.text());
+						props.setSignedIn.call(props.isSignedIn, true);
+						return;
+					}
+					alert(response.statusText);
+				}}
+			>
 				Đăng nhập
 			</Button>
 		</Flex>
