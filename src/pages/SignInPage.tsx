@@ -49,7 +49,7 @@ const SignInPage = (props: SignInProps) => {
 						BuildOption(email, password),
 					);
 					if (response.status == 200) {
-						SetItem('credential', await response.text());
+						SetItem('uid', await response.text());
 						props.setSignedIn.call(props.isSignedIn, true);
 						navigate('/Home');
 						return;
