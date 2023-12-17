@@ -2,7 +2,7 @@ import { Text } from '@chakra-ui/react';
 import { ShoppingCartIcon } from '@heroicons/react/24/solid';
 import { Badge, Button } from '@material-tailwind/react';
 
-const CartButton = () => (
+const CartIcon = () => (
 	<Button
 		className="rounded-xl flex flex-row items-center my-0.5 bg-inherit"
 		onClick={() => {}}
@@ -19,4 +19,4 @@ const CartButton = () => (
 	</Button>
 );
 
-export default CartButton;
+export default CartIcon;

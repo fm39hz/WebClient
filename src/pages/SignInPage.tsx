@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Flex, Text } from '@chakra-ui/react';
 import { Button } from '@material-tailwind/react';
+import { SetItem } from 'utils/StorageUtils';
 import { GetApi, ServiceEndPoint } from 'Constant';
-import { GetItem, SetItem } from 'utils/StorageUtils';
 import InputField from 'components/InteractField/InputField';
 
 const BuildOption = (email: string, password: string) => {
@@ -17,7 +17,7 @@ const BuildOption = (email: string, password: string) => {
 		}),
 	};
 };
-const SignIn = () => {
+const SignInPage = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	let signIn = async () => {
@@ -49,4 +49,4 @@ const SignIn = () => {
 	);
 };
 
-export default SignIn;
+export default SignInPage;
