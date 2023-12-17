@@ -1,15 +1,9 @@
 import { Flex } from '@chakra-ui/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
-import {
-	IconButton,
-	Menu,
-	MenuHandler,
-	MenuList,
-} from '@material-tailwind/react';
+import { IconButton } from '@material-tailwind/react';
 import { Input } from '@mui/material';
 import { GetApi, ServiceEndPoint } from 'Constant';
 import { useEffect } from 'react';
-import SearchItem from './SearchItem';
 
 const SearchBar = () => {
 	var _products = [
@@ -44,21 +38,7 @@ const SearchBar = () => {
 			<IconButton className="bg-inherit text-inherit">
 				<MagnifyingGlassIcon className="w-5 h-5 my-3" />
 			</IconButton>
-			<Menu placement="bottom-start">
-				<MenuHandler>
-					<MenuList className="max-h-[20rem] max-w-[18rem]">
-						{_products.map(({ name, imageUrl }) => {
-							return (
-								<SearchItem
-									key={name}
-									imageUrl={imageUrl}
-									name={name}
-								></SearchItem>
-							);
-						})}
-					</MenuList>
-				</MenuHandler>
-			</Menu>
+			<Flex className="absolute self-center z-10  mt-2 w-56 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"></Flex>
 		</Flex>
 	);
 };
