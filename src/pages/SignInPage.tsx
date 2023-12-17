@@ -4,6 +4,7 @@ import { Button } from '@material-tailwind/react';
 import { SetItem } from 'utils/StorageUtils';
 import { GetApi, ServiceEndPoint } from 'Constant';
 import InputField from 'components/InteractField/InputField';
+import { useNavigate } from 'react-router-dom';
 
 type SignInProps = {
 	setSignedIn: Dispatch<SetStateAction<boolean>>;
@@ -24,6 +25,7 @@ const BuildOption = (email: string, password: string) => {
 };
 
 const SignInPage = (props: SignInProps) => {
+	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	return (
@@ -49,6 +51,7 @@ const SignInPage = (props: SignInProps) => {
 					if (response.status == 200) {
 						SetItem('credential', await response.text());
 						props.setSignedIn.call(props.isSignedIn, true);
+						navigate('/Home');
 						return;
 					}
 					alert(response.statusText);
