@@ -42,12 +42,14 @@ const App = () => {
 				setSignIn={setIsSingedIn}
 				products={products}
 			/>
-			<MainPages
-				products={products}
-				user={user}
-				isSignedIn={isSingedIn}
-				setSignIn={setIsSingedIn}
-			/>
+			<Flex className="flex-row">
+				<MainPages
+					products={products}
+					user={user}
+					isSignedIn={isSingedIn}
+					setSignIn={setIsSingedIn}
+				/>
+			</Flex>
 		</Flex>
 	);
 };

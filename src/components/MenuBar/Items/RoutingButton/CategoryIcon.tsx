@@ -1,7 +1,7 @@
 import { Text } from '@chakra-ui/react';
 import { Bars3Icon } from '@heroicons/react/24/solid';
 import { Button, Menu, MenuHandler, MenuList } from '@material-tailwind/react';
-import CpuItem from 'components/MenuBar/SideBarItems/CpuItem';
+import CpuItem from 'components/MenuBar/Items/RoutingButton/CategoryMenu/CpuItem';
 
 const CategoryIcon = () => (
 	<Menu
@@ -17,8 +17,6 @@ const CategoryIcon = () => (
 			</Button>
 		</MenuHandler>
 		<MenuList>
-			<CpuItem />
-			<CpuItem />
 			<CpuItem />
 		</MenuList>
 	</Menu>
