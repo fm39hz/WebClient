@@ -1,4 +1,6 @@
 import { Flex, Image, Text } from '@chakra-ui/react';
+import { GetApi, ServiceEndPoint } from 'Constant';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 export type ProductProps = {
@@ -15,6 +17,20 @@ export type ProductProps = {
 };
 
 const ProductCard = (props: ProductProps) => {
+	const [promotedPrice, setPromotedPrice] = useState(0);
+	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const _promotedPrice = await fetch(
+					GetApi(ServiceEndPoint.promote).concat('/' + props.id),
+				);
+				setPromotedPrice(await _promotedPrice.json());
+			} catch (error) {
+				console.error('Error fetching data:', error);
+			}
+		};
+		fetchData();
+	}, []);
 	return (
 		<Link
 			className="flex flex-col bg-white w-60 h-80 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 ease-in-out border"
@@ -36,14 +52,13 @@ const ProductCard = (props: ProductProps) => {
 				</Flex>
 				<Flex className="flex-row mb-1">
 					<Text className="ml-1 text-red-500 font-semibold">
-						{props.basePrice} đ
+						{promotedPrice} đ
 					</Text>
 				</Flex>
 			</Flex>
-			<Flex className="items-center bg-gray-100 p-2 mt-auto">
+			<Flex className="flex-col items-left bg-gray-100 p-2 mt-auto">
 				<Text className="text-orange-600">{props.rating}★</Text>
 				<Text className="text-gray-600">
-					{' '}
 					({props.reviewCount} đánh giá)
 				</Text>
 			</Flex>

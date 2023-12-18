@@ -1,21 +1,23 @@
+import { Flex, Text } from '@chakra-ui/react';
 import ProductCard, { ProductProps } from './ProductCard';
 
-type Container = {
+type ProductContainerProps = {
 	products: ProductProps[];
 	title: string;
 };
 
-const ProductContainer = (props: Container) => {
+const ProductContainer = (props: ProductContainerProps) => {
 	return (
-		<div className="mb-8 bg-white p-4 rounded-md">
-			<h2 className="text-2xl text-black font-bold mb-4">
+		<Flex className="flex-col mb-8 bg-white p-4 rounded-md">
+			<Text className="text-2xl text-black font-bold mb-4">
 				{props.title}
-			</h2>
-			<div className="flex overflow-x-auto space-x-4">
+			</Text>
+			<Flex className="overflow-x-auto space-x-4">
 				{props.products.map((product) => (
 					<ProductCard key={product.id} {...product} />
 				))}
-			</div>
-		</div>
+			</Flex>
+		</Flex>
 	);
 };
+export default ProductContainer;
