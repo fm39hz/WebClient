@@ -5,11 +5,13 @@ import { Dispatch, SetStateAction } from 'react';
 import { ProductProps } from 'components/Products/ProductCard';
 import { Flex } from '@chakra-ui/react';
 import Footer from 'components/Footer/Footer';
+import ProfilePage, { UserProps } from 'pages/ProfilePage';
 
 type MainPageProps = {
 	setSignIn: Dispatch<SetStateAction<boolean>>;
 	isSignedIn: boolean;
 	products: ProductProps[];
+	user: UserProps;
 };
 
 const MainPages = (props: MainPageProps) => {
@@ -21,6 +23,10 @@ const MainPages = (props: MainPageProps) => {
 		{
 			path: '/Home',
 			component: <HomePage products={props.products} />,
+		},
+		{
+			path: '/Profile',
+			component: <ProfilePage {...props.user} />,
 		},
 		{
 			path: '/SignIn',
@@ -35,10 +41,10 @@ const MainPages = (props: MainPageProps) => {
 	return (
 		<Flex className="flex-col bg-inherit">
 			<Routes>
-				{publicRoutes.map(({ path, component }) => (
+				{publicRoutes.map(({ path, component }, index) => (
 					<Route
 						caseSensitive={true}
-						key={path}
+						key={index}
 						path={path}
 						element={component}
 					/>
