@@ -17,6 +17,7 @@ const App = () => {
 			imageUrl: '',
 			basePrice: 0,
 			quantity: 0,
+			manufacturer: '',
 			id: 0,
 		} as ProductProps,
 	]);

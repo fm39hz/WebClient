@@ -7,14 +7,14 @@ type HomePageProps = {
 
 const HomePage = (props: HomePageProps) => {
 	return (
-		<Flex className="flex-col items-center gap-8  overflow-auto">
+		<Flex className="flex-col items-center gap-8 overflow-auto">
 			<Spacer />
 			<List className=" flex flex-col items-center gap-4">
-				<List className="flex flex-row gap-4">
-					{props.products.map((item) => (
-						<ProductCard imgUrl={item.imageUrl}></ProductCard>
-					))}
-				</List>
+				{props.products.map((item) => (
+					<List className="flex flex-row gap-4">
+						<ProductCard {...item}></ProductCard>
+					</List>
+				))}
 			</List>
 		</Flex>
 	);
