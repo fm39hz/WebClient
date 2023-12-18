@@ -8,7 +8,7 @@ const CartIcon = () => (
 		onClick={() => {}}
 	>
 		<Badge
-			className=" bg-[#8e1d2a]"
+			className=" bg-[#a62828]"
 			content={5}
 			overlap="circular"
 			placement="top-end"

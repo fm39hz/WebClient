@@ -33,7 +33,7 @@ const ProductCard = (props: ProductProps) => {
 	}, []);
 	return (
 		<Link
-			className="flex flex-col bg-white w-60 h-80 rounded-md shadow-lg hover:shadow-lg transition duration-300 ease-in-out border"
+			className="flex flex-col bg-[#ececec] w-60 h-80 rounded-md shadow-lg hover:shadow-lg transition duration-300 ease-in-out border"
 			to={'/Products/'.concat(props.name)}
 		>
 			<Image

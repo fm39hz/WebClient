@@ -14,7 +14,7 @@ type MenuBarProps = {
 
 const MenuBar = (props: MenuBarProps) => {
 	return (
-		<Flex className="bg-[#612f35] items-center justify-center gap-x-2">
+		<Flex className="bg-[#ff3e3e] items-center justify-center gap-x-2">
 			<MenuIcon />
 			<CategoryIcon />
 			<SearchBar products={props.products} />

@@ -28,7 +28,7 @@ const SignedInIcon = () => {
 	}, []);
 	return (
 		<Link
-			className="flex flex-row justify-center rounded-xl gap-2 bg-[#763139] shadow-sm"
+			className="flex flex-row justify-center rounded-xl gap-2 bg-[#a62828] shadow-sm"
 			to={'/Profile'}
 		>
 			{isLoading ? (
