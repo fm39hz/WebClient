@@ -16,6 +16,12 @@ const ProductContainer = (props: ProductContainerProps) => {
 				{props.products.map((product) => (
 					<ProductCard key={product.id} {...product} />
 				))}
+				{props.products.map((product) => (
+					<ProductCard key={product.id} {...product} />
+				))}
+				{props.products.map((product) => (
+					<ProductCard key={product.id} {...product} />
+				))}
 			</Flex>
 		</Flex>
 	);

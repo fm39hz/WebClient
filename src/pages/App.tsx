@@ -29,7 +29,7 @@ const App = () => {
 		fetchData();
 	}, []);
 	return (
-		<Flex className="flex-col bg-black text-white h-screen w-full">
+		<Flex className="flex-col bg-brown-100 text-black h-screen w-full">
 			<MenuBar isSignedIn={isSingedIn} products={products} />
 			<MainPages
 				setSignIn={setIsSingedIn}

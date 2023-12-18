@@ -3,6 +3,8 @@ import HomePage from 'pages/HomePage';
 import { Route, Routes } from 'react-router-dom';
 import { Dispatch, SetStateAction } from 'react';
 import { ProductProps } from 'components/Products/ProductCard';
+import { Flex } from '@chakra-ui/react';
+import Footer from 'components/Footer/Footer';
 
 type MainPageProps = {
 	setSignIn: Dispatch<SetStateAction<boolean>>;
@@ -31,16 +33,19 @@ const MainPages = (props: MainPageProps) => {
 		},
 	];
 	return (
-		<Routes>
-			{publicRoutes.map(({ path, component }) => (
-				<Route
-					caseSensitive={true}
-					key={path}
-					path={path}
-					element={component}
-				/>
-			))}
-		</Routes>
+		<Flex className="flex-col bg-inherit">
+			<Routes>
+				{publicRoutes.map(({ path, component }) => (
+					<Route
+						caseSensitive={true}
+						key={path}
+						path={path}
+						element={component}
+					/>
+				))}
+			</Routes>
+			<Footer />
+		</Flex>
 	);
 };
 

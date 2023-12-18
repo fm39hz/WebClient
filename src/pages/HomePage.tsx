@@ -8,7 +8,7 @@ type HomePageProps = {
 
 const HomePage = (props: HomePageProps) => {
 	return (
-		<Flex className="flex-col bg-brown-100 items-center gap-8 overflow-y-auto">
+		<Flex className="flex-col items-center gap-8">
 			<ProductContainer
 				products={props.products}
 				title="Sản phẩm bán chạy"
