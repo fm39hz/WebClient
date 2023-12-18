@@ -1,4 +1,4 @@
-import { Image, Text } from '@chakra-ui/react';
+import { Flex, Image, Text } from '@chakra-ui/react';
 import { UserIcon } from '@heroicons/react/24/solid';
 import { GetApi, ServiceEndPoint } from 'Constant';
 import { UserProps } from 'pages/ProfilePage';
@@ -28,15 +28,20 @@ const SignedInIcon = () => {
 	}, []);
 	return (
 		<Link
-			className="flex flex-row justify-center gap-4 bg-inherit"
+			className="flex flex-row justify-center rounded-xl gap-2 bg-[#be1529] shadow-sm"
 			to={'/Profile'}
 		>
 			{isLoading ? (
 				<UserIcon className="w-8 h-8" />
 			) : (
-				<Image src={user.photoUrl} className="w-8 h-8 rounded-xl" />
+				<Image
+					src={user.photoUrl}
+					className="w-8 h-8 ml-2 my-2 rounded-xl"
+				/>
 			)}
-			<Text className="text-white">{user.displayName}</Text>
+			<Flex className="flex-col justify-center">
+				<Text className="text-white my-2 mr-2">{user.displayName}</Text>
+			</Flex>
 		</Link>
 	);
 };

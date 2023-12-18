@@ -8,7 +8,7 @@ type ProductContainerProps = {
 
 const ProductContainer = (props: ProductContainerProps) => {
 	return (
-		<Flex className="flex-col m-8 bg-brown-200 p-4 rounded-md w-fit">
+		<Flex className="flex-col m-8 bg-white p-4 rounded-md w-fit">
 			<Text className="text-2xl text-black font-bold mb-1 ml-6">
 				{props.title}
 			</Text>
