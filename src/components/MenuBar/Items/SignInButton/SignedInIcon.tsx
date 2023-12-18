@@ -1,16 +1,12 @@
-import { Image } from '@chakra-ui/react';
+import { Image, Text } from '@chakra-ui/react';
 import { UserIcon } from '@heroicons/react/24/solid';
 import { Button } from '@material-tailwind/react';
 import { GetApi, ServiceEndPoint } from 'Constant';
+import { UserProps } from 'pages/ProfilePage';
 import { useEffect, useState } from 'react';
 
 const SignedInIcon = () => {
-	const [user, setUser] = useState({
-		displayName: '',
-		providerData: {
-			photoUrl: '',
-		},
-	});
+	const [user, setUser] = useState({} as UserProps);
 	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
 		const fetchData = async () => {
@@ -32,16 +28,17 @@ const SignedInIcon = () => {
 	}, []);
 	return (
 		<Button
+			className="flex flex-row justify-center gap-4"
 			onClick={() => {
 				console.log(user);
 			}}
 		>
 			{isLoading ? (
-				<UserIcon className="w-8 h-8 mx-2" />
+				<UserIcon className="w-8 h-8" />
 			) : (
-				<Image src={user.providerData.photoUrl} className="w-8 h-8" />
+				<Image src={user.photoUrl} className="w-8 h-8 rounded-xl" />
 			)}
-			{user.displayName}
+			<Text>{user.displayName}</Text>
 		</Button>
 	);
 };

@@ -7,18 +7,7 @@ import { ProductProps } from 'components/Products/ProductCard';
 
 const App = () => {
 	const [isSingedIn, setIsSingedIn] = useState(false);
-	const [products, setProducts] = useState([
-		{
-			name: '',
-			specificationId: 0,
-			description: '',
-			imageUrl: '',
-			basePrice: 0,
-			quantity: 0,
-			manufacturer: '',
-			id: 0,
-		} as ProductProps,
-	]);
+	const [products, setProducts] = useState([{} as ProductProps]);
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
