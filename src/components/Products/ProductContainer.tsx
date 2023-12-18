@@ -8,11 +8,11 @@ type ProductContainerProps = {
 
 const ProductContainer = (props: ProductContainerProps) => {
 	return (
-		<Flex className="flex-col mb-8 bg-white p-4 rounded-md">
-			<Text className="text-2xl text-black font-bold mb-4">
+		<Flex className="flex-col m-8 bg-brown-200 p-4 rounded-md w-fit">
+			<Text className="text-2xl text-black font-bold mb-1 ml-6">
 				{props.title}
 			</Text>
-			<Flex className="overflow-x-auto space-x-4">
+			<Flex className="flex-wrap gap-4 justify-start m-4">
 				{props.products.map((product) => (
 					<ProductCard key={product.id} {...product} />
 				))}

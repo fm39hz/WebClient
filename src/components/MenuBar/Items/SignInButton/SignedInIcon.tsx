@@ -28,7 +28,7 @@ const SignedInIcon = () => {
 	}, []);
 	return (
 		<Button
-			className="flex flex-row justify-center gap-4"
+			className="flex flex-row justify-center gap-4 bg-inherit border border-l-purple-100"
 			onClick={() => {
 				console.log(user);
 			}}

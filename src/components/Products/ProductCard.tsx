@@ -33,7 +33,7 @@ const ProductCard = (props: ProductProps) => {
 	}, []);
 	return (
 		<Link
-			className="flex flex-col bg-white w-60 h-80 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 ease-in-out border"
+			className="flex flex-col bg-white w-60 h-80 rounded-md shadow-lg hover:shadow-lg transition duration-300 ease-in-out border"
 			to={'/Products/'.concat(props.name)}
 		>
 			<Image
@@ -42,21 +42,15 @@ const ProductCard = (props: ProductProps) => {
 				alt={props.name}
 			/>
 			<Flex className="flex-col ml-4">
-				<Flex className="flex-row mb-1">
-					<Text className="text-xl text-black font-semibold ml-1">
-						{props.name}
-					</Text>
-				</Flex>
-				<Flex className="flex-row mb-1">
-					<Text className="ml-1 font-semibold text-gray-400 line-through">
-						{props.basePrice} đ
-					</Text>
-				</Flex>
-				<Flex className="flex-row mb-1">
-					<Text className="ml-1 text-red-500 font-semibold">
-						{promotedPrice} đ
-					</Text>
-				</Flex>
+				<Text className="text-xl text-black font-semibold ml-1">
+					{props.name}
+				</Text>
+				<Text className="ml-1 font-semibold text-gray-400 line-through">
+					{props.basePrice} đ
+				</Text>
+				<Text className="ml-1 text-red-500 font-semibold">
+					{promotedPrice} đ
+				</Text>
 			</Flex>
 			<Flex className="flex-col items-left bg-gray-100 p-2 mt-auto">
 				<Text className="text-orange-600">{props.rating}★</Text>
