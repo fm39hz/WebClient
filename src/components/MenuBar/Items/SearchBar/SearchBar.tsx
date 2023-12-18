@@ -1,21 +1,62 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { IconButton } from '@material-tailwind/react';
 import { Input } from '@mui/material';
 import { ProductProps } from 'components/Products/ProductCard';
+import { useState } from 'react';
+import SearchItem from './SearchItem';
 
 type SearchBarProps = {
 	products: ProductProps[];
 };
 
 const SearchBar = (props: SearchBarProps) => {
+	const [isFocus, setIsFocus] = useState(false);
+	const [searchTerm, setSearchTerm] = useState('');
+	const [filteredProducts, setFilteredProducts] = useState(
+		{} as ProductProps[],
+	);
+	const isFocusing = () => {
+		setIsFocus(true);
+	};
+	const isNotFocusing = () => {
+		setFilteredProducts([]);
+		setIsFocus(false);
+	};
+	const handleSearch = (event: any) => {
+		setSearchTerm(event.target.value);
+		setFilteredProducts(
+			props.products.filter((product) =>
+				product.name.toLowerCase().includes(searchTerm.toLowerCase()),
+			),
+		);
+	};
 	return (
-		<Flex className="flex-row bg-white my-0.5 rounded-sm text-black items-center">
-			<Input className="text-sm m-2 w-96" placeholder="Bạn cần tìm gì?" />
-			<IconButton className="bg-inherit text-inherit">
-				<MagnifyingGlassIcon className="w-5 h-5 my-3" />
-			</IconButton>
-			<Flex className="absolute self-center z-10  mt-2 w-56 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"></Flex>
+		<Flex className="flex-col bg-white my-0.5 rounded-sm text-black items-center">
+			<Flex className="flex-row">
+				<Input
+					className="text-sm m-2 w-96"
+					placeholder="Bạn cần tìm gì?"
+					onChange={handleSearch}
+					onBlur={isNotFocusing}
+					onFocus={isFocusing}
+				/>
+				<IconButton className="bg-inherit text-inherit">
+					<MagnifyingGlassIcon className="w-5 h-5 my-3" />
+				</IconButton>
+			</Flex>
+			<Flex
+				className="flex-col absolute gap-1 rounded-sm border bg-white w-96 my-12 z-10"
+				visibility={isFocus ? 'visible' : 'hidden'}
+			>
+				{filteredProducts.length != 0 ? (
+					Array.from(filteredProducts).map((product) => (
+						<SearchItem key={product.id} {...product} />
+					))
+				) : (
+					<Text>Dữ liệu rỗng</Text>
+				)}
+			</Flex>
 		</Flex>
 	);
 };
