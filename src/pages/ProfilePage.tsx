@@ -37,6 +37,6 @@ export type UserProps = {
 };
 
 const ProfilePage = (props: UserProps) => {
-	return <Flex></Flex>;
+    return <Flex></Flex>;
 };
 export default ProfilePage;

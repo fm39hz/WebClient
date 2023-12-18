@@ -41,10 +41,12 @@ const ProductCard = (props: ProductProps) => {
 				src={props.imageUrl}
 				alt={props.name}
 			/>
-			<Flex className="flex-col p-1">
-				<Text className="text-xl text-black font-semibold mb-2">
-					{props.name}
-				</Text>
+			<Flex className="flex-col ml-4">
+				<Flex className="flex-row mb-1">
+					<Text className="text-xl text-black font-semibold ml-1">
+						{props.name}
+					</Text>
+				</Flex>
 				<Flex className="flex-row mb-1">
 					<Text className="ml-1 font-semibold text-gray-400 line-through">
 						{props.basePrice} đ
