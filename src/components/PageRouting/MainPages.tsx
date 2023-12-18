@@ -13,17 +13,14 @@ type MainPageProps = {
 const MainPages = (props: MainPageProps) => {
 	const publicRoutes = [
 		{
-			id: 0,
 			path: '/',
 			component: <HomePage products={props.products} />,
 		},
 		{
-			id: 1,
 			path: '/Home',
 			component: <HomePage products={props.products} />,
 		},
 		{
-			id: 2,
 			path: '/SignIn',
 			component: (
 				<SignInPage
@@ -35,10 +32,10 @@ const MainPages = (props: MainPageProps) => {
 	];
 	return (
 		<Routes>
-			{publicRoutes.map(({ id, path, component }) => (
+			{publicRoutes.map(({ path, component }) => (
 				<Route
 					caseSensitive={true}
-					key={id}
+					key={path}
 					path={path}
 					element={component}
 				/>
