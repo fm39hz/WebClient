@@ -1,4 +1,4 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { IconButton } from '@material-tailwind/react';
 import { Input } from '@mui/material';
@@ -49,13 +49,9 @@ const SearchBar = (props: SearchBarProps) => {
 				className="flex-col absolute gap-1 rounded-sm border bg-white w-96 my-12 z-10"
 				visibility={isFocus ? 'visible' : 'hidden'}
 			>
-				{filteredProducts.length != 0 ? (
-					Array.from(filteredProducts).map((product) => (
-						<SearchItem key={product.id} {...product} />
-					))
-				) : (
-					<Text>Dữ liệu rỗng</Text>
-				)}
+				{Array.from(filteredProducts).map((product) => (
+					<SearchItem key={product.id} {...product} />
+				))}
 			</Flex>
 		</Flex>
 	);
