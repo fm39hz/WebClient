@@ -7,11 +7,10 @@ export type ProductProps = {
 	description: string;
 	imageUrl: string;
 	basePrice: number;
-	actualPrice: number;
-	quantity: number;
-	rating: number;
-	reviewCount: number;
+	inStock: number;
 	manufacturer: string;
+	reviewCount: number;
+	rating: number;
 	id: number;
 };
 
@@ -21,32 +20,34 @@ const ProductCard = (props: ProductProps) => {
 			className="flex flex-col bg-white w-60 h-80 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 ease-in-out border"
 			to={'/Products/'.concat(props.name)}
 		>
-			<div className="h-40 overflow-hidden">
-				<Image
-					className="w-full h-full object-cover"
-					src="https://via.placeholder.com/214x155"
-					alt={props.name}
-				/>
-			</div>
-			<div className="flex flex-col p-4">
-				<Text className="text-xl text-black font-semibold mb-2">{props.name}CPU i9900k</Text>
-				<Flex className="flex-row mb-2">
-					<Text className="ml-1 font-semibold">
-						<s className="text-gray-400">{props.basePrice} đ</s>
+			<Image
+				className="scale-75 object-cover overflow-hidden"
+				src={props.imageUrl}
+				alt={props.name}
+			/>
+			<Flex className="flex-col p-1">
+				<Text className="text-xl text-black font-semibold mb-2">
+					{props.name}
+				</Text>
+				<Flex className="flex-row mb-1">
+					<Text className="ml-1 font-semibold text-gray-400 line-through">
+						{props.basePrice} đ
 					</Text>
 				</Flex>
-				<Flex className="flex-row mb-4">
+				<Flex className="flex-row mb-1">
 					<Text className="ml-1 text-red-500 font-semibold">
-						{props.actualPrice} đ
+						{props.basePrice} đ
 					</Text>
 				</Flex>
-			</div>
-			<div className="flex items-center bg-gray-100 p-5 mt-auto">
+			</Flex>
+			<Flex className="items-center bg-gray-100 p-2 mt-auto">
 				<Text className="text-orange-600">{props.rating}★</Text>
-				<Text className="text-gray-600"> ({props.reviewCount} đánh giá)</Text>
-			</div>
+				<Text className="text-gray-600">
+					{' '}
+					({props.reviewCount} đánh giá)
+				</Text>
+			</Flex>
 		</Link>
-
 	);
 };
 export default ProductCard;
