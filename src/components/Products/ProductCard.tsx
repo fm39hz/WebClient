@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 export type ProductProps = {
 	name: string;
 	concreateId: number;
-	cpu: {};
-	vga: {};
 	description: string;
 	imageUrl: string;
 	basePrice: number;

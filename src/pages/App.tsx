@@ -11,8 +11,6 @@ const App = () => {
 		{
 			name: '',
 			concreateId: 0,
-			cpu: {},
-			vga: {},
 			description: '',
 			imageUrl: '',
 			basePrice: 0,
