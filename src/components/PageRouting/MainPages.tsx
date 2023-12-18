@@ -6,6 +6,7 @@ import { ProductProps } from 'components/Products/ProductCard';
 import { Flex } from '@chakra-ui/react';
 import Footer from 'components/Footer/Footer';
 import ProfilePage, { UserProps } from 'pages/ProfilePage';
+import CartPage from 'pages/CartPage';
 
 type MainPageProps = {
 	setSignIn: Dispatch<SetStateAction<boolean>>;
@@ -36,6 +37,10 @@ const MainPages = (props: MainPageProps) => {
 					isSignedIn={props.isSignedIn}
 				/>
 			),
+		},
+		{
+			path: '/Cart',
+			component: <CartPage />,
 		},
 	];
 	return (
