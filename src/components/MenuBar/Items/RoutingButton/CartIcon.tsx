@@ -8,10 +8,10 @@ const CartIcon = () => (
 		onClick={() => {}}
 	>
 		<Badge
+			className=" bg-[#8e1d2a]"
 			content={5}
 			overlap="circular"
 			placement="top-end"
-			color="orange"
 		>
 			<ShoppingCartIcon className="w-8 h-8 mx-2" />
 		</Badge>
