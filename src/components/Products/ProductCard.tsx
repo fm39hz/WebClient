@@ -52,11 +52,20 @@ const ProductCard = (props: ProductProps) => {
 					{promotedPrice} đ
 				</Text>
 			</Flex>
-			<Flex className="flex-col items-left bg-gray-100 p-2 mt-auto">
-				<Text className="text-orange-600">{props.rating}★</Text>
-				<Text className="text-gray-600">
-					({props.reviewCount} đánh giá)
-				</Text>
+			<Flex className="flex-row items-left bg-gray-100 p-2 mt-auto justify-between">
+				<Flex className="flex-col">
+					<Text className="text-orange-600">{props.rating}★</Text>
+					<Text className="text-gray-600">
+						({props.reviewCount} đánh giá)
+					</Text>
+				</Flex>
+				<Flex className="flex-col justify-end">
+					<Text className="text-gray-600 items-baseline">
+						{props.inStock > 0
+							? props.inStock + ' sản phẩm'
+							: 'Liên hệ'}
+					</Text>
+				</Flex>
 			</Flex>
 		</Link>
 	);

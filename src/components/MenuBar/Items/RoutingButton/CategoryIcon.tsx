@@ -4,7 +4,7 @@ import { Button } from '@material-tailwind/react';
 
 const CategoryIcon = () => (
 	<Button
-		className="flex flex-row bg-[#763139] items-center rounded-xl my-0.5 shadow-sm"
+		className="flex flex-row bg-[#a62828] items-center rounded-xl my-0.5 shadow-sm"
 		onClick={() => {}}
 	>
 		<Bars3Icon className="w-8 h-8" />
