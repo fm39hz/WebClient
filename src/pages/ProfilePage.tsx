@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, Image, Text } from '@chakra-ui/react';
 export type UserProps = {
 	uid: string;
 	displayName: string;
@@ -37,6 +37,17 @@ export type UserProps = {
 };
 
 const ProfilePage = (props: UserProps) => {
-    return <Flex></Flex>;
+	return (
+		<Flex className="flex-col h-screen">
+			<Flex className="flex-row m-8">
+				<Image className="w-32 h-32 rounded-xl" src={props.photoUrl} />
+				<Flex className="flex-col m-4">
+					<Text>{props.displayName}</Text>
+					<Text>{props.phoneNumber}</Text>
+					<Text>{props.email}</Text>
+				</Flex>
+			</Flex>
+		</Flex>
+	);
 };
 export default ProfilePage;
