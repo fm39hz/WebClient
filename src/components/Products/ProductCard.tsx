@@ -37,7 +37,7 @@ const ProductCard = (props: ProductProps) => {
 				</Flex>
 				<Flex className="flex-row mb-4">
 					<Text className="ml-1 text-red-500 font-semibold">
-						{props.actualPrice}696969 đ
+						{props.actualPrice} đ
 					</Text>
 				</Flex>
 			</div>
