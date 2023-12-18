@@ -3,18 +3,36 @@ import MenuBar from '../components/MenuBar/Menubar';
 import MainPages from '../components/PageRouting/MainPages';
 import { useEffect, useState } from 'react';
 import { GetApi, ServiceEndPoint } from 'Constant';
+import { ProductProps } from 'components/Products/ProductCard';
 
 const App = () => {
 	const [isSingedIn, setIsSingedIn] = useState(false);
+	const [products, setProducts] = useState([
+		{
+			name: '',
+			concreateId: 0,
+			cpu: {},
+			vga: {},
+			description: '',
+			imageUrl: '',
+			basePrice: 0,
+			quantity: 0,
+			id: 0,
+		} as ProductProps,
+	]);
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const response = await fetch(
+				const _isSignedIn = await fetch(
 					GetApi(ServiceEndPoint.isLoggedIn).concat(
 						'/' + localStorage.getItem('uid')!,
 					),
 				);
-				const data = await response.json();
+				const _products = await fetch(
+					GetApi(ServiceEndPoint.products)!,
+				);
+				setProducts(await _products.json());
+				const data = await _isSignedIn.json();
 				setIsSingedIn(data);
 			} catch (error) {
 				console.error('Error fetching data:', error);
@@ -24,8 +42,12 @@ const App = () => {
 	}, []);
 	return (
 		<Flex className="flex-col bg-black text-white h-screen w-full">
-			<MenuBar isSignedIn={isSingedIn} />
-			<MainPages setSignIn={setIsSingedIn} isSignedIn={isSingedIn} />
+			<MenuBar isSignedIn={isSingedIn} products={products} />
+			<MainPages
+				setSignIn={setIsSingedIn}
+				isSignedIn={isSingedIn}
+				products={products}
+			/>
 		</Flex>
 	);
 };

@@ -2,36 +2,13 @@ import { Flex } from '@chakra-ui/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { IconButton } from '@material-tailwind/react';
 import { Input } from '@mui/material';
-import { GetApi, ServiceEndPoint } from 'Constant';
-import { useEffect } from 'react';
+import { ProductProps } from 'components/Products/ProductCard';
 
-const SearchBar = () => {
-	var _products = [
-		{
-			name: '',
-			concreateId: 0,
-			cpu: null,
-			vga: null,
-			description: '',
-			imageUrl: '',
-			basePrice: 0,
-			quantity: 0,
-			id: 0,
-		},
-	];
-	var _searchedProducts = [];
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const response = await fetch(GetApi(ServiceEndPoint.products)!);
-				_products = await response.json();
-				console.log(_products);
-			} catch (error) {
-				console.error('Error fetching data:', error);
-			}
-		};
-		fetchData();
-	}, []);
+type SearchBarProps = {
+	products: ProductProps[];
+};
+
+const SearchBar = (props: SearchBarProps) => {
 	return (
 		<Flex className="flex-row bg-white my-0.5 rounded-sm text-black items-center">
 			<Input className="text-sm m-2 w-96" placeholder="Bạn cần tìm gì?" />

@@ -2,10 +2,12 @@ import SignInPage from 'pages/SignInPage';
 import HomePage from 'pages/HomePage';
 import { Route, Routes } from 'react-router-dom';
 import { Dispatch, SetStateAction } from 'react';
+import { ProductProps } from 'components/Products/ProductCard';
 
 type MainPageProps = {
 	setSignIn: Dispatch<SetStateAction<boolean>>;
 	isSignedIn: boolean;
+	products: ProductProps[];
 };
 
 const MainPages = (props: MainPageProps) => {
@@ -13,12 +15,12 @@ const MainPages = (props: MainPageProps) => {
 		{
 			id: 0,
 			path: '/',
-			component: <HomePage />,
+			component: <HomePage products={props.products} />,
 		},
 		{
 			id: 1,
 			path: '/Home',
-			component: <HomePage />,
+			component: <HomePage products={props.products} />,
 		},
 		{
 			id: 2,
