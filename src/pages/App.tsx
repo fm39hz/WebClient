@@ -37,7 +37,11 @@ const App = () => {
 	}, []);
 	return (
 		<Flex className="flex-col bg-[#e2e2e2] text-black h-screen w-full">
-			<MenuBar isSignedIn={isSingedIn} products={products} />
+			<MenuBar
+				isSignedIn={isSingedIn}
+				setSignIn={setIsSingedIn}
+				products={products}
+			/>
 			<MainPages
 				products={products}
 				user={user}

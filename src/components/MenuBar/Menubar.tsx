@@ -6,9 +6,11 @@ import SignInIcon from './Items/SignInButton/SignInIcon';
 import CartIcon from './Items/RoutingButton/CartIcon';
 import SignedInIcon from './Items/SignInButton/SignedInIcon';
 import { ProductProps } from 'components/Products/ProductCard';
+import { Dispatch, SetStateAction } from 'react';
 
 type MenuBarProps = {
 	isSignedIn: boolean;
+	setSignIn: Dispatch<SetStateAction<boolean>>;
 	products: ProductProps[];
 };
 
@@ -19,7 +21,11 @@ const MenuBar = (props: MenuBarProps) => {
 			<CategoryIcon />
 			<SearchBar products={props.products} />
 			<CartIcon />
-			{props.isSignedIn ? <SignedInIcon /> : <SignInIcon />}
+			{props.isSignedIn ? (
+				<SignedInIcon setSignIn={props.setSignIn} />
+			) : (
+				<SignInIcon />
+			)}
 		</Flex>
 	);
 };
