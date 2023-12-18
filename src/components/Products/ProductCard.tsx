@@ -7,7 +7,10 @@ export type ProductProps = {
 	description: string;
 	imageUrl: string;
 	basePrice: number;
+	actualPrice: number;
 	quantity: number;
+	rating: number;
+	reviewCount: number;
 	manufacturer: string;
 	id: number;
 };
@@ -15,22 +18,35 @@ export type ProductProps = {
 const ProductCard = (props: ProductProps) => {
 	return (
 		<Link
-			className="flex flex-col bg-white w-60 h-64 rounded-xl justify-center text-black text-center"
+			className="flex flex-col bg-white w-60 h-80 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition duration-300 ease-in-out border"
 			to={'/Products/'.concat(props.name)}
 		>
-			<Image
-				className="scale-75 w-40 self-center"
-				src={props.imageUrl}
-			></Image>
-			<Text className="">{props.name}</Text>
-			<Text className="">{props.description}</Text>
-			<Flex className="flex-row justify-center">
-				<Text className="">Giá niêm yết:</Text>
-				<Text className=" ml-1 text-[#E30019]">
-					{props.basePrice} đ
-				</Text>
-			</Flex>
+			<div className="h-40 overflow-hidden">
+				<Image
+					className="w-full h-full object-cover"
+					src="https://via.placeholder.com/214x155"
+					alt={props.name}
+				/>
+			</div>
+			<div className="flex flex-col p-4">
+				<Text className="text-xl text-black font-semibold mb-2">{props.name}CPU i9900k</Text>
+				<Flex className="flex-row mb-2">
+					<Text className="ml-1 font-semibold">
+						<s className="text-gray-400">{props.basePrice} đ</s>
+					</Text>
+				</Flex>
+				<Flex className="flex-row mb-4">
+					<Text className="ml-1 text-red-500 font-semibold">
+						{props.actualPrice} đ
+					</Text>
+				</Flex>
+			</div>
+			<div className="flex items-center bg-gray-100 p-5 mt-auto">
+				<Text className="text-orange-600">{props.rating}★</Text>
+				<Text className="text-gray-600"> ({props.reviewCount} đánh giá)</Text>
+			</div>
 		</Link>
+
 	);
 };
 export default ProductCard;
