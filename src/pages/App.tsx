@@ -10,9 +10,7 @@ const App = () => {
 	const [products, setProducts] = useState([
 		{
 			name: '',
-			concreateId: 0,
-			cpu: {},
-			vga: {},
+			specificationId: 0,
 			description: '',
 			imageUrl: '',
 			basePrice: 0,
