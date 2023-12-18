@@ -2,7 +2,7 @@ import { Flex, Text } from '@chakra-ui/react';
 
 const Footer = () => {
 	return (
-		<Flex className="flex-col bg-[#E30019] w-max-screen h-fit justify-center text-center">
+		<Flex className="flex-col bg-[#612f35] text-white w-max-screen h-fit justify-center text-center">
 			<Text className="">Web bán linh kiện máy tính</Text>
 			<Text className="">Sản phẩm của nhóm 5</Text>
 		</Flex>
