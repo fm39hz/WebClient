@@ -1,11 +1,13 @@
 import { Text } from '@chakra-ui/react';
 import { ShoppingCartIcon } from '@heroicons/react/24/solid';
-import { Badge, Button } from '@material-tailwind/react';
+import { Badge } from '@material-tailwind/react';
+import { Link } from 'react-router-dom';
 
 const CartIcon = () => (
-	<Button
+	<Link
 		className="rounded-xl flex flex-row items-center my-0.5 bg-inherit"
-		onClick={() => {}}
+		to="/Cart"
+		// onClick={() => {}}
 	>
 		<Badge
 			className=" bg-[#FFC700]"
@@ -16,7 +18,7 @@ const CartIcon = () => (
 			<ShoppingCartIcon className="w-8 h-8 mx-2" />
 		</Badge>
 		<Text className="mr-2">Giỏ hàng</Text>
-	</Button>
+	</Link>
 );
 
 export default CartIcon;
