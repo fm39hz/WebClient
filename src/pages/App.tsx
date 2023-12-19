@@ -5,16 +5,23 @@ import { useEffect, useState } from 'react';
 import { GetApi, ServiceEndPoint } from 'Constant';
 import { ProductProps } from 'components/Products/ProductCard';
 import { UserProps } from './ProfilePage';
+import { CartProps } from './CartPages/CartPage';
 
 const App = () => {
-	const [isSingedIn, setIsSingedIn] = useState(false);
 	const [products, setProducts] = useState([{} as ProductProps]);
+	const [cart, setCart] = useState({} as CartProps);
 	const [user, setUser] = useState({} as UserProps);
+	const [isSingedIn, setIsSingedIn] = useState(false);
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const _products = await fetch(
 					GetApi(ServiceEndPoint.products)!,
+				);
+				const _cart = await fetch(
+					GetApi(ServiceEndPoint.cart).concat(
+						'/' + localStorage.getItem('uid')!,
+					),
 				);
 				const _user = await fetch(
 					GetApi(ServiceEndPoint.users).concat(
@@ -27,6 +34,7 @@ const App = () => {
 					),
 				);
 				setProducts(await _products.json());
+				setCart(await _cart.json());
 				setUser(await _user.json());
 				setIsSingedIn(await _isSignedIn.json());
 			} catch (error) {
@@ -36,20 +44,19 @@ const App = () => {
 		fetchData();
 	}, []);
 	return (
-		<Flex className="flex-col bg-[#e2e2e2] text-black h-screen w-full">
+		<Flex className="flex-col bg-[#e2e2e2] text-black h-screen">
 			<MenuBar
 				isSignedIn={isSingedIn}
 				setSignIn={setIsSingedIn}
 				products={products}
 			/>
-			<Flex className="flex-row">
-				<MainPages
-					products={products}
-					user={user}
-					isSignedIn={isSingedIn}
-					setSignIn={setIsSingedIn}
-				/>
-			</Flex>
+			<MainPages
+				cart={cart}
+				products={products}
+				user={user}
+				isSignedIn={isSingedIn}
+				setSignIn={setIsSingedIn}
+			/>
 		</Flex>
 	);
 };

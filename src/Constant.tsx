@@ -7,6 +7,7 @@ export const enum ServiceEndPoint {
 	cpu = '/Cpus',
 	vga = '/Vgas',
 	users = '/Users',
+	cart = '/Cart',
 }
 export const WebServiceApi = 'http://localhost:5234/api';
 export const GetApi = (endPoint: ServiceEndPoint): string =>

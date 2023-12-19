@@ -29,8 +29,8 @@ const SignInPage = (props: SignInProps) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	return (
-		<Flex className="flex-col my-0.5 rounded-sm items-center justify-center">
-			<Text>Đăng nhập</Text>
+		<Flex className="flex-col my-0.5 w-screen rounded-sm items-center justify-start">
+			<Text className="my-4">Đăng nhập</Text>
 			<InputField
 				inputValue="Email"
 				isPassword={false}
