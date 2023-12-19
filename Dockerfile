@@ -2,7 +2,9 @@ FROM node:20
 
 WORKDIR /app
 
-COPY . ./
+COPY ./src/ ./
+COPY ./*.* ./
+COPY ./.vitest/ ./
 
 RUN npm install
 
