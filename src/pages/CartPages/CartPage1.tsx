@@ -1,9 +1,11 @@
 import { Card, CardBody, Flex } from '@chakra-ui/react';
 import { ShoppingItems } from './CartPage';
-import CartItem from './CartItem';
+import CartItem from '../../components/Cart/CartItem';
 import { Typography } from '@material-tailwind/react';
+import { useEffect } from 'react';
 const CartPage1 = (props: ShoppingItems[]) => {
 	console.log(props);
+	useEffect(() => {}, []);
 	return (
 		<Card className="w-50 bg-white rounded-xl min-w-max w-fit border-spacing-3">
 			<CardBody className="justify-center m-2">

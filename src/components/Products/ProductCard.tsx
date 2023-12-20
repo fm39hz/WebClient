@@ -1,5 +1,5 @@
-import { Flex, Image, Text } from '@chakra-ui/react';
-import { Card } from '@material-tailwind/react';
+import { Flex, Image } from '@chakra-ui/react';
+import { Card, Typography } from '@material-tailwind/react';
 import { Divider } from '@mui/material';
 import { GetApi, ServiceEndPoint } from 'Constant';
 import { useEffect, useState } from 'react';
@@ -35,37 +35,39 @@ const ProductCard = (props: ProductProps) => {
 	}, []);
 	return (
 		<Link to={'/Products/'.concat(props.name)}>
-			<Card className="flex flex-col bg-[#ececec] w-60 h-80 rounded-md shadow-lg hover:shadow-lg transition duration-300 ease-in-out border">
+			<Card className="flex flex-col bg-[#ececec] w-60 h-92 rounded-md shadow-lg hover:shadow-lg transition duration-300 ease-in-out border items-center">
 				<Image
-					className=" scale-90 object-cover overflow-hidden"
+					className="object-cover overflow-hidden mb-1"
 					src={props.imageUrl}
 					alt={props.name}
 				/>
-				<Divider />
-				<Flex className="flex-col ml-4">
-					<Text className="text-xl text-black font-semibold ml-1">
+				<Divider className="w-full" />
+				<Flex className="flex-col mx-2 w-full">
+					<Typography className="text-xl h-12 text-black font-semibold mx-1">
 						{props.name}
-					</Text>
-					<Text className="ml-1 font-semibold text-gray-400 line-through">
-						{props.basePrice} đ
-					</Text>
-					<Text className="ml-1 text-red-500 font-semibold">
-						{promotedPrice} đ
-					</Text>
+					</Typography>
+					<Typography className="mx-1 font-semibold text-gray-400 line-through">
+						{props.basePrice.toLocaleString()} đ
+					</Typography>
+					<Typography className="mx-1 text-red-500 font-semibold">
+						{promotedPrice.toLocaleString()} đ
+					</Typography>
 				</Flex>
-				<Flex className="flex-row items-left bg-gray-100 p-2 mt-auto justify-between">
+				<Flex className="flex-row items-left bg-gray-100 rounded-b-md w-full p-2 mt-1 justify-between gap-4">
 					<Flex className="flex-col">
-						<Text className="text-orange-600">{props.rating}★</Text>
-						<Text className="text-gray-600">
+						<Typography className="text-orange-600">
+							{props.rating}★
+						</Typography>
+						<Typography className="text-gray-600">
 							({props.reviewCount} đánh giá)
-						</Text>
+						</Typography>
 					</Flex>
 					<Flex className="flex-col justify-end">
-						<Text className="text-gray-600 items-baseline">
+						<Typography className="text-gray-600 items-baseline">
 							{props.inStock > 0
 								? props.inStock + ' sản phẩm'
 								: 'Liên hệ'}
-						</Text>
+						</Typography>
 					</Flex>
 				</Flex>
 			</Card>

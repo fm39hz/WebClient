@@ -1,7 +1,7 @@
 import { Flex, Spacer, Image } from '@chakra-ui/react';
 import { Checkbox, Typography } from '@material-tailwind/react';
 import { Input } from '@mui/material';
-import { ShoppingItems } from './CartPage';
+import { ShoppingItems } from '../../pages/CartPages/CartPage';
 import { useEffect, useState } from 'react';
 import { GetApi, ServiceEndPoint } from 'Constant';
 
@@ -46,7 +46,7 @@ const CartItem = (props: ShoppingItems) => {
 		putData();
 	}, [quantity, isSelected]);
 	return (
-		<Flex className="flex-row m-1 min-w-max h-fit gap-4">
+		<Flex className="flex-row my-1 min-w-max h-fit gap-4 border-2 rounded-sm">
 			<Checkbox
 				className="scale-75 "
 				color="red"
@@ -54,15 +54,22 @@ const CartItem = (props: ShoppingItems) => {
 				onChange={() => setIsSelected(!isSelected)}
 				crossOrigin="items"
 			/>
-			<Image src={props.target.imageUrl} className="w-16 h-16"></Image>
+			<Flex className="items-center">
+				<Image src={props.target.imageUrl} className="w-16 h-16" />
+			</Flex>
 			<Typography className="mt-1">{props.target.name}</Typography>
 			<Spacer />
-			<Flex className="flex-col justify-end">
-				<Typography className="text-red-500">{price}đ</Typography>
+			<Flex className="flex-col justify-end mx-4">
+				<Typography className="line-through">
+					{(props.target.basePrice * quantity).toLocaleString()}đ
+				</Typography>
+				<Typography className="text-red-500">
+					{price.toLocaleString()}đ
+				</Typography>
 				<Flex className="flex-row">
 					<Spacer />
 					<Input
-						className="w-8 rounded-sm bg-blue-gray-100"
+						className="scale-75 w-8 rounded-sm bg-blue-gray-100"
 						value={quantity}
 						type="number"
 						onChange={(target) => {
