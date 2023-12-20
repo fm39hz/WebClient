@@ -14,7 +14,7 @@ import {
 } from '@material-tailwind/react';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
 import CartPage1 from './CartPage1';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export type ShoppingItems = {
 	appliedPromoteStrategy: {
@@ -34,6 +34,7 @@ export type CartProps = {
 	shoppingItems: ShoppingItems[];
 	id: number;
 };
+
 const CartPages = (props: CartProps) => {
 	const Steps = [
 		<CartPage1 {...props.shoppingItems} />,
@@ -41,6 +42,7 @@ const CartPages = (props: CartProps) => {
 		<CartPage3 />,
 		<CartPage4 />,
 	];
+	const navigate = useNavigate();
 	const [step, setStep] = useState(0);
 	return (
 		<Card className="flex-col m-8 bg-blue-gray-100 p-4 rounded-md min-w-full">
@@ -54,19 +56,27 @@ const CartPages = (props: CartProps) => {
 			</CardBody>
 			<CardFooter className="pt-0">
 				<Flex className="flex-row">
-					<Link
+					<Button
 						className="flex  bg-black text-white rounded-xl"
-						to={'/Home'}
-						onClick={() => setStep(0)}
+						onClick={() => {
+							if (step > 0) {
+								setStep(step - 1);
+							} else {
+								navigate('/Home');
+							}
+						}}
 					>
 						<Flex className="flex-row m-3 items-center gap-2">
-							Về trang chủ <ArrowLeftIcon className="h-4 w-4" />
+							<ArrowLeftIcon className="h-4 w-4" />
+							Quay lại
 						</Flex>
-					</Link>
+					</Button>
 					<Spacer />
 					<Button
 						className="flex items-center gap-2"
-						onClick={() => setStep(step + 1)}
+						onClick={() => {
+							if (step < 3) setStep(step + 1);
+						}}
 					>
 						Đặt hàng ngay
 						<ArrowRightIcon className="h-4 w-4" />

@@ -57,7 +57,7 @@ const App = () => {
 		fetchData();
 	}, []);
 	return (
-		<Flex className="flex-col bg-[#e2e2e2] text-black min-h-screen">
+		<Flex className="flex-col bg-[#e2e2e2] text-black min-h-screen min-w-full">
 			<MenuBar
 				inCart={
 					isLoading || !isSingedIn ? 0 : cart.shoppingItems.length

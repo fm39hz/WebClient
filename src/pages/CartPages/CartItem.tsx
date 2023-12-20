@@ -1,36 +1,48 @@
 import { Flex, Spacer, ButtonGroup, Button, Image } from '@chakra-ui/react';
-import { CardBody, Typography } from '@material-tailwind/react';
-import { Input } from '@mui/material';
+import { Typography } from '@material-tailwind/react';
+import { Checkbox, Input } from '@mui/material';
 import { ShoppingItems } from './CartPage';
+import { useEffect, useState } from 'react';
 
 const CartItem = (props: ShoppingItems) => {
+	const [isSelected, setIsSelected] = useState(props.isSelected == 1);
+	const [quantity, setQuantity] = useState(props.quantity);
+	useEffect(() => {}, [quantity, isSelected]);
 	return (
-		<CardBody className="justify-between m-2 gap-8">
-			<Flex className="flex-row mt-3 mb-3">
-				<Flex className="flex-row items-start">
-					<Image
-						src={props.target.imageUrl}
-						className="w-16 h-16"
-					></Image>
-					<Flex className="mt-0 m-3">{props.target.name}</Flex>
-				</Flex>
-				<Spacer />
-				<Flex className="flex-col justify-end">
-					<Typography className="text-red-500">
-						{props.target.basePrice}đ
-					</Typography>
-					<ButtonGroup>
-						<Button className="rounded-none">-</Button>
-						<Input
-							className="w-6"
-							defaultValue={props.quantity}
-							placeholder="Số lượng"
-						></Input>
-						<Button className="rounded-none">+</Button>
-					</ButtonGroup>
-				</Flex>
+		<Flex className="flex-row  m-1 w-fit h-fit gap-4">
+			<Checkbox
+				className="scale-75"
+				checked={isSelected}
+				onChange={() => setIsSelected(!isSelected)}
+			/>
+			<Image src={props.target.imageUrl} className="w-16 h-16"></Image>
+			<Typography className="mt-1">{props.target.name}</Typography>
+			<Spacer />
+			<Flex className="flex-col justify-end">
+				<Typography className="text-red-500">
+					{props.target.basePrice}đ
+				</Typography>
+				<ButtonGroup className="bg-blue-100 justify-center">
+					<Button
+						className="rounded-none"
+						onClick={() => setQuantity(quantity - 1)}
+					>
+						-
+					</Button>
+					<Input
+						className="w-6 text-center"
+						value={quantity}
+						placeholder="Số lượng"
+					/>
+					<Button
+						className="rounded-none"
+						onClick={() => setQuantity(quantity + 1)}
+					>
+						+
+					</Button>
+				</ButtonGroup>
 			</Flex>
-		</CardBody>
+		</Flex>
 	);
 };
 export default CartItem;

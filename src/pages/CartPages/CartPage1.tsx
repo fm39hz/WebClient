@@ -7,19 +7,17 @@ const CartPage1 = (props: ShoppingItems[]) => {
 	return (
 		<Card className="w-50 bg-white rounded-xl">
 			<CardBody className="justify-center m-2">
-				{props.length == 0 ? (
-					<Flex className="w-80 h-52">
+				<Flex className=" h-52 gap-2 w-fit">
+					{props.length == 0 ? (
 						<Typography>
 							Không có sản phẩm trong giỏ hàng
 						</Typography>
-					</Flex>
-				) : (
-					Object.values(props).map((products) => (
-						<Flex className=" w-96">
+					) : (
+						Object.values(props).map((products) => (
 							<CartItem key={products.id} {...products} />
-						</Flex>
-					))
-				)}
+						))
+					)}
+				</Flex>
 			</CardBody>
 		</Card>
 	);
