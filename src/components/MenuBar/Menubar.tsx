@@ -12,6 +12,7 @@ type MenuBarProps = {
 	isSignedIn: boolean;
 	setSignIn: Dispatch<SetStateAction<boolean>>;
 	products: ProductProps[];
+	inCart: number;
 };
 
 const MenuBar = (props: MenuBarProps) => {
@@ -20,7 +21,7 @@ const MenuBar = (props: MenuBarProps) => {
 			<MenuIcon />
 			<CategoryIcon />
 			<SearchBar products={props.products} />
-			<CartIcon />
+			<CartIcon inCart={props.inCart} />
 			{props.isSignedIn ? (
 				<SignedInIcon setSignIn={props.setSignIn} />
 			) : (

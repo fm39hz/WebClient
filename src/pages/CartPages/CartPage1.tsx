@@ -8,7 +8,7 @@ const CartPage1 = (props: ShoppingItems[]) => {
 		<Card className="w-50 bg-white rounded-xl">
 			<CardBody className="justify-center m-2">
 				{props.length == 0 ? (
-					props.map((products) => (
+					Array.from(props).map((products) => (
 						<CartItem key={products.id} {...products.target} />
 					))
 				) : (

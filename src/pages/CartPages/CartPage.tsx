@@ -36,20 +36,20 @@ export type CartProps = {
 };
 const CartPages = (props: CartProps) => {
 	const Steps = [
-		<CartPage1 {...Array.from(props.shoppingItems)} />,
+		<CartPage1 {...props.shoppingItems} />,
 		<CartPage2 />,
 		<CartPage3 />,
 		<CartPage4 />,
 	];
 	const [step, setStep] = useState(0);
 	return (
-		<Card className="bg-inherit rounded-xl">
+		<Card className="flex-col m-8 bg-white p-4 rounded-md min-w-full">
 			<CardHeader className="items-center gap-8 m-6 justify-center">
 				<CartProgressBar step={step} />
 			</CardHeader>
 			<CardBody className="items-center gap-8 m-6 justify-center">
-				<Flex className="flex-col items-center gap-8 m-6 justify-center">
-					<Flex>{Steps[step]}</Flex>
+				<Flex className="flex-col items-center gap-8 m-6 min-w-full">
+					{Steps[step]}
 				</Flex>
 			</CardBody>
 			<CardFooter className="pt-0">

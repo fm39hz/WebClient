@@ -20,7 +20,7 @@ const CartProgressBar = (props: CartProgress) => {
 		isChecked[props.step] = true;
 	}, [props.step]);
 	return (
-		<Flex className="flex-row justify-center my-4 gap-10" width="90vw">
+		<Flex className="flex-riw mx-4 bg-white p-4 rounded-md w-fit gap-10">
 			<Flex className="flex-col items-center">
 				<ShoppingBagIcon className="w-7 h-7" color={checkOutStep(0)} />
 				<Typography className="text-center">Giỏ hàng</Typography>

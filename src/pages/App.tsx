@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, Spacer } from '@chakra-ui/react';
 import MenuBar from '../components/MenuBar/Menubar';
 import MainPages from '../components/PageRouting/MainPages';
 import { useEffect, useState } from 'react';
@@ -48,6 +48,7 @@ const App = () => {
 	return (
 		<Flex className="flex-col bg-[#e2e2e2] text-black min-h-screen">
 			<MenuBar
+				inCart={cart.shoppingItems.length}
 				isSignedIn={isSingedIn}
 				setSignIn={setIsSingedIn}
 				products={products}
@@ -62,6 +63,7 @@ const App = () => {
 					setSignIn={setIsSingedIn}
 				/>
 			</Flex>
+			<Spacer />
 			<Footer />
 		</Flex>
 	);
