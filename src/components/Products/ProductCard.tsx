@@ -47,7 +47,7 @@ const ProductCard = (props: ProductProps) => {
 						{props.name}
 					</Typography>
 					<Typography className="mx-1 font-semibold text-gray-400 line-through">
-						{props.basePrice.toLocaleString()} đ
+						{Number(props.basePrice).toLocaleString()} đ
 					</Typography>
 					<Typography className="mx-1 text-red-500 font-semibold">
 						{promotedPrice.toLocaleString()} đ
