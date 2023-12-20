@@ -14,8 +14,10 @@ const CartPage1 = (props: ShoppingItems[]) => {
 						</Typography>
 					</Flex>
 				) : (
-					Array.from(props).map((products) => (
-						<CartItem key={products.id} {...products.target} />
+					Object.values(props).map((products) => (
+						<Flex className=" w-96">
+							<CartItem key={products.id} {...products} />
+						</Flex>
 					))
 				)}
 			</CardBody>

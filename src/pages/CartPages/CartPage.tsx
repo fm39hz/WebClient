@@ -43,7 +43,7 @@ const CartPages = (props: CartProps) => {
 	];
 	const [step, setStep] = useState(0);
 	return (
-		<Card className="flex-col m-8 bg-white p-4 rounded-md min-w-full">
+		<Card className="flex-col m-8 bg-blue-gray-100 p-4 rounded-md min-w-full">
 			<CardHeader className="items-center gap-8 m-6 justify-center">
 				<CartProgressBar step={step} />
 			</CardHeader>

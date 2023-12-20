@@ -10,6 +10,7 @@ import Sidebar from 'components/Sidebar/Sidebar';
 import Footer from 'components/Footer/Footer';
 
 const App = () => {
+	const [isLoading, setIsLoading] = useState(true);
 	const [products, setProducts] = useState([{} as ProductProps]);
 	const [cart, setCart] = useState({} as CartProps);
 	const [user, setUser] = useState({} as UserProps);
@@ -39,6 +40,7 @@ const App = () => {
 				setCart(await _cart.json());
 				setUser(await _user.json());
 				setIsSingedIn(await _isSignedIn.json());
+				setIsLoading(false);
 			} catch (error) {
 				console.error('Error fetching data:', error);
 			}
@@ -48,10 +50,10 @@ const App = () => {
 	return (
 		<Flex className="flex-col bg-[#e2e2e2] text-black min-h-screen">
 			<MenuBar
-				inCart={cart.shoppingItems.length}
-				isSignedIn={isSingedIn}
+				inCart={isLoading ? 0 : cart.shoppingItems.length}
+				isSignedIn={isLoading ? false : isSingedIn}
 				setSignIn={setIsSingedIn}
-				products={products}
+				products={isLoading ? ({} as ProductProps[]) : products}
 			/>
 			<Flex>
 				<Sidebar />
