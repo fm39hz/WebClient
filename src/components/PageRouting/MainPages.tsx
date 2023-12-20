@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 import { Dispatch, SetStateAction } from 'react';
 import { ProductProps } from 'components/Products/ProductCard';
 import { Flex } from '@chakra-ui/react';
-import Footer from 'components/Footer/Footer';
 import ProfilePage, { UserProps } from 'pages/ProfilePage';
 import CartPages, { CartProps } from 'pages/CartPages/CartPage';
 
@@ -46,19 +45,16 @@ const MainPages = (props: MainPageProps) => {
 	];
 	return (
 		<Flex className="flex-col bg-inherit">
-			<Flex className="min-h-screen">
-				<Routes>
-					{publicRoutes.map(({ path, component }, index) => (
-						<Route
-							caseSensitive={true}
-							key={index}
-							path={path}
-							element={component}
-						/>
-					))}
-				</Routes>
-			</Flex>
-			<Footer />
+			<Routes>
+				{publicRoutes.map(({ path, component }, index) => (
+					<Route
+						caseSensitive={true}
+						key={index}
+						path={path}
+						element={component}
+					/>
+				))}
+			</Routes>
 		</Flex>
 	);
 };

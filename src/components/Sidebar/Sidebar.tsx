@@ -1,27 +1,23 @@
-import { Card, List, ListItem } from "@material-tailwind/react";
+import { Flex } from '@chakra-ui/react';
+import { Menu, MenuItem } from '@material-tailwind/react';
 
 const navListMenuItems = [
-    {
-        title: "Item1",
-    },
-    {
-        title: "Item2",
-    },
-    {
-        title: "Item3",
-    },
-
-
+	{
+		title: 'Cpu',
+	},
+	{
+		title: 'Vga',
+	},
 ];
 const Sidebar = () => {
-    return (
-        <Card className="w-64">
-            <List>
-                <ListItem>Inbox</ListItem>
-                <ListItem>Trash</ListItem>
-                <ListItem>Settings</ListItem>
-            </List>
-        </Card>
-    )
-}
-export default Sidebar
+	return (
+		<Flex className="flex-col my-8 ml-8 bg-white p-4 rounded-md w-80 h-fit">
+			<Menu>
+				{navListMenuItems.map((item) => (
+					<MenuItem key={item.title}>{item.title}</MenuItem>
+				))}
+			</Menu>
+		</Flex>
+	);
+};
+export default Sidebar;

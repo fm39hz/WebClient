@@ -43,7 +43,7 @@ const CartPages = (props: CartProps) => {
 	];
 	const [step, setStep] = useState(0);
 	return (
-		<Card className="bg-inherit rounded-xl min-h-screen">
+		<Card className="bg-inherit rounded-xl">
 			<CardHeader className="items-center gap-8 m-6 justify-center">
 				<CartProgressBar step={step} />
 			</CardHeader>
