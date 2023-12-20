@@ -41,8 +41,8 @@ const ProductCard = (props: ProductProps) => {
 					src={props.imageUrl}
 					alt={props.name}
 				/>
+				<Divider />
 				<Flex className="flex-col ml-4">
-					<Divider />
 					<Text className="text-xl text-black font-semibold ml-1">
 						{props.name}
 					</Text>
