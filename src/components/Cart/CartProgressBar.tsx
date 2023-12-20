@@ -17,7 +17,7 @@ const CartProgressBar = (props: CartProgress) => {
 		step >= current ? ' text-[#ff3e3e]' : ' text-black';
 	useEffect(() => {}, [props.step]);
 	return (
-		<CardHeader className="flex flex-row mx-2 p-4 rounded-md px-64">
+		<CardHeader className="flex flex-row mx-2 p-4 rounded-md px-72">
 			<Flex className="h-fit w-full gap-10 justify-between mt-5">
 				<Flex
 					className={'flex-col items-center'.concat(

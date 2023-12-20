@@ -34,7 +34,7 @@ const ProductCard = (props: ProductProps) => {
 		fetchData();
 	}, []);
 	return (
-		<Link to={'/Products/'.concat(props.name)}>
+		<Link to={'/Product/'.concat(props.id.toString())}>
 			<Card className="flex flex-col bg-[#ececec] w-60 h-92 rounded-md shadow-lg hover:shadow-lg transition duration-300 ease-in-out border items-center">
 				<Image
 					className="object-cover overflow-hidden mb-1"

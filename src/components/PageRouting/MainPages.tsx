@@ -6,6 +6,7 @@ import { ProductProps } from 'components/Products/ProductCard';
 import { Flex } from '@chakra-ui/react';
 import ProfilePage, { UserProps } from 'pages/ProfilePage';
 import CartPages, { CartProps } from 'pages/CartPages/CartPage';
+import ProductPage from 'pages/ProductPage';
 
 type MainPageProps = {
 	setSignIn: Dispatch<SetStateAction<boolean>>;
@@ -42,7 +43,16 @@ const MainPages = (props: MainPageProps) => {
 			path: '/Cart',
 			component: <CartPages {...props.cart} />,
 		},
-	];
+	].concat(
+		props.products.map((product) => {
+			const productPath = {
+				path: '/Product/'.concat(product.id.toString()),
+				component: <ProductPage {...product} />,
+			};
+			return productPath;
+		}),
+	);
+	console.log(publicRoutes);
 	return (
 		<Flex className="flex-col bg-inherit">
 			<Routes>

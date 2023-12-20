@@ -60,7 +60,7 @@ const CartItem = (props: ShoppingItems) => {
 			</Flex>
 			<Typography className="mt-1">{props.target.name}</Typography>
 			<Spacer className="px-56" />
-			<Flex className="flex-col justify-end mx-4">
+			<Flex className="flex-col justify-end mx-4 w-28 text-end ">
 				<Typography className="line-through">
 					{(props.target.basePrice * quantity).toLocaleString()}₫
 				</Typography>
@@ -70,7 +70,7 @@ const CartItem = (props: ShoppingItems) => {
 				<Flex className="flex-row">
 					<Spacer />
 					<Input
-						className="scale-75 w-8 rounded-sm bg-blue-gray-100"
+						className="scale-75 w-12 rounded-sm bg-[#e2e2e2]"
 						value={quantity}
 						type="number"
 						onChange={(target) => {
