@@ -15,42 +15,53 @@ const App = () => {
 	const [cart, setCart] = useState({} as CartProps);
 	const [user, setUser] = useState({} as UserProps);
 	const [isSingedIn, setIsSingedIn] = useState(false);
+	const fetchData = async () => {
+		try {
+			const _products = await fetch(GetApi(ServiceEndPoint.products)!);
+			const _cart = await fetch(
+				GetApi(ServiceEndPoint.cart).concat(
+					'/',
+					localStorage.getItem('uid')!,
+				),
+			);
+			const _user = await fetch(
+				GetApi(ServiceEndPoint.users).concat(
+					'/',
+					localStorage.getItem('uid')!,
+				),
+			);
+			const _isSignedIn = await fetch(
+				GetApi(ServiceEndPoint.isLoggedIn).concat(
+					'/',
+					localStorage.getItem('uid')!,
+				),
+			);
+			setProducts(await _products.json());
+			setCart(await _cart.json());
+			setUser(await _user.json());
+			setIsSingedIn(await _isSignedIn.json());
+			setIsLoading(false);
+		} catch (error) {
+			console.error('Error fetching data:', error);
+		}
+	};
 	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const _products = await fetch(
-					GetApi(ServiceEndPoint.products)!,
-				);
-				const _cart = await fetch(
-					GetApi(ServiceEndPoint.cart).concat(
-						'/' + localStorage.getItem('uid')!,
-					),
-				);
-				const _user = await fetch(
-					GetApi(ServiceEndPoint.users).concat(
-						'/' + localStorage.getItem('uid')!,
-					),
-				);
-				const _isSignedIn = await fetch(
-					GetApi(ServiceEndPoint.isLoggedIn).concat(
-						'/' + localStorage.getItem('uid')!,
-					),
-				);
-				setProducts(await _products.json());
-				setCart(await _cart.json());
-				setUser(await _user.json());
-				setIsSingedIn(await _isSignedIn.json());
-				setIsLoading(false);
-			} catch (error) {
-				console.error('Error fetching data:', error);
-			}
-		};
+		if (!isSingedIn) {
+			setCart({} as CartProps);
+			setUser({} as UserProps);
+		} else {
+			fetchData();
+		}
+	}, [isSingedIn]);
+	useEffect(() => {
 		fetchData();
 	}, []);
 	return (
 		<Flex className="flex-col bg-[#e2e2e2] text-black min-h-screen">
 			<MenuBar
-				inCart={isLoading ? 0 : cart.shoppingItems.length}
+				inCart={
+					isLoading || !isSingedIn ? 0 : cart.shoppingItems.length
+				}
 				isSignedIn={isLoading ? false : isSingedIn}
 				setSignIn={setIsSingedIn}
 				products={isLoading ? ({} as ProductProps[]) : products}
