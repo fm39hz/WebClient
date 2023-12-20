@@ -8,15 +8,15 @@ const CartPage1 = (props: ShoppingItems[]) => {
 		<Card className="w-50 bg-white rounded-xl">
 			<CardBody className="justify-center m-2">
 				{props.length == 0 ? (
-					Array.from(props).map((products) => (
-						<CartItem key={products.id} {...products.target} />
-					))
-				) : (
 					<Flex className="w-80 h-52">
 						<Typography>
 							Không có sản phẩm trong giỏ hàng
 						</Typography>
 					</Flex>
+				) : (
+					Array.from(props).map((products) => (
+						<CartItem key={products.id} {...products.target} />
+					))
 				)}
 			</CardBody>
 		</Card>
