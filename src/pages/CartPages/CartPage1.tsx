@@ -5,9 +5,9 @@ import { Typography } from '@material-tailwind/react';
 const CartPage1 = (props: ShoppingItems[]) => {
 	console.log(props);
 	return (
-		<Card className="w-50 bg-white rounded-xl">
+		<Card className="w-50 bg-white rounded-xl min-w-max w-fit border-spacing-3">
 			<CardBody className="justify-center m-2">
-				<Flex className=" h-52 gap-2 w-fit">
+				<Flex className="flex-col h-52 gap-2">
 					{props.length == 0 ? (
 						<Typography>
 							Không có sản phẩm trong giỏ hàng

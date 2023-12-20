@@ -1,13 +1,15 @@
 export const enum ServiceEndPoint {
 	products = '/Products',
+	promote = '/Products/Promoted',
 	login = '/Auth/Login',
 	logout = 'Auth/Logout',
 	isLoggedIn = '/Users/IsLoggedIn',
-	promote = '/Promote',
 	cpu = '/Cpus',
 	vga = '/Vgas',
 	users = '/Users',
 	cart = '/Cart',
+	items = '/ShoppingItems',
+	promotedPrice = '/ShoppingItems/GetPrice',
 }
 export const WebServiceApi = 'http://localhost:5234/api';
 export const GetApi = (endPoint: ServiceEndPoint): string =>
