@@ -3,8 +3,8 @@ import { Flex, Text } from '@chakra-ui/react';
 import { Button } from '@material-tailwind/react';
 import { SetItem } from 'utils/StorageUtils';
 import { GetApi, ServiceEndPoint } from 'Constant';
-import InputField from 'components/InteractField/InputField';
 import { useNavigate } from 'react-router-dom';
+import { Input } from '@mui/material';
 
 type SignInProps = {
 	setSignedIn: Dispatch<SetStateAction<boolean>>;
@@ -29,18 +29,22 @@ const SignInPage = (props: SignInProps) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	return (
-		<Flex className="flex-col my-0.5 w-screen rounded-sm items-center justify-start">
+		<Flex className="flex-col bg-white min-h-screen px-96 m-2 rounded-sm items-center justify-start">
 			<Text className="my-4">Đăng nhập</Text>
-			<InputField
-				inputValue="Email"
-				isPassword={false}
-				getValue={(event) => setEmail(event.target.value)}
-			/>
-			<InputField
-				inputValue="Mật khẩu"
-				isPassword={true}
-				getValue={(event) => setPassword(event.target.value)}
-			/>
+
+			<Flex className="flex-col w-96 items-center">
+				<Input
+					className="text-sm rounded-xl m-2 w-full"
+					placeholder="Email"
+					onChange={(event: any) => setEmail(event.target.value)}
+				/>
+				<Input
+					className="text-sm rounded-xl m-2 w-full"
+					type="password"
+					placeholder="Mật khẩu"
+					onChange={(event: any) => setPassword(event.target.value)}
+				/>
+			</Flex>
 			<Button
 				className="bg-[#E30019] text-white"
 				onClick={async () => {
