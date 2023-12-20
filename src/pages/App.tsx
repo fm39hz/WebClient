@@ -6,6 +6,8 @@ import { GetApi, ServiceEndPoint } from 'Constant';
 import { ProductProps } from 'components/Products/ProductCard';
 import { UserProps } from './ProfilePage';
 import { CartProps } from './CartPages/CartPage';
+import Sidebar from 'components/Sidebar/Sidebar';
+import Footer from 'components/Footer/Footer';
 
 const App = () => {
 	const [products, setProducts] = useState([{} as ProductProps]);
@@ -44,19 +46,23 @@ const App = () => {
 		fetchData();
 	}, []);
 	return (
-		<Flex className="flex-col bg-[#e2e2e2] text-black h-screen">
+		<Flex className="flex-col bg-[#e2e2e2] text-black min-h-screen">
 			<MenuBar
 				isSignedIn={isSingedIn}
 				setSignIn={setIsSingedIn}
 				products={products}
 			/>
-			<MainPages
-				cart={cart}
-				products={products}
-				user={user}
-				isSignedIn={isSingedIn}
-				setSignIn={setIsSingedIn}
-			/>
+			<Flex>
+				<Sidebar />
+				<MainPages
+					cart={cart}
+					products={products}
+					user={user}
+					isSignedIn={isSingedIn}
+					setSignIn={setIsSingedIn}
+				/>
+			</Flex>
+			<Footer />
 		</Flex>
 	);
 };
