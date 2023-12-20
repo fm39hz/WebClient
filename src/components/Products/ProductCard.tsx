@@ -47,10 +47,10 @@ const ProductCard = (props: ProductProps) => {
 						{props.name}
 					</Typography>
 					<Typography className="mx-1 font-semibold text-gray-400 line-through">
-						{Number(props.basePrice).toLocaleString()} đ
+						{Number(props.basePrice).toLocaleString()}₫
 					</Typography>
 					<Typography className="mx-1 text-red-500 font-semibold">
-						{promotedPrice.toLocaleString()} đ
+						{promotedPrice.toLocaleString()}₫
 					</Typography>
 				</Flex>
 				<Flex className="flex-row items-left bg-gray-100 rounded-b-md w-full p-2 mt-1 justify-between gap-4">

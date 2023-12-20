@@ -1,68 +1,61 @@
-import { Card, CardBody, Flex } from '@chakra-ui/react';
+import { Card, CardBody, Flex, Spacer } from '@chakra-ui/react';
+import { Radio, Typography } from '@material-tailwind/react';
+import { Divider } from '@mui/material';
 
 const CartPage3 = () => {
 	return (
 		<Card className="w-50 bg-white rounded-xl">
 			<CardBody className="justify-center m-2">
 				<Flex className="flex-col mt-3 mb-3 gap-3">
-					<p className="text-2xl">Thông tin đặt hàng</p>
+					<Typography className="text-2xl">
+						Thông tin đặt hàng
+					</Typography>
 					<Flex>
-						<Flex minWidth={'200'}>
-							<li>
-								<b>Khách hàng</b>
-							</li>
-						</Flex>
+						<Typography>Khách hàng</Typography>
+						<Spacer />
 						<Flex>Ngô Tiến Long</Flex>
 					</Flex>
 					<Flex>
-						<Flex minWidth={'200'}>
-							<li>
-								<b>Số điện thoại</b>
-							</li>
-						</Flex>
+						<Typography>Số điện thoại</Typography>
+						<Spacer />
 						<Flex>0967981332</Flex>
 					</Flex>
 					<Flex>
-						<Flex minWidth={'200'}>
-							<li>
-								<b>Địa chỉ nhận hàng</b>
-							</li>
-						</Flex>
+						<Typography>Địa chỉ nhận hàng</Typography>
+						<Spacer />
 						<Flex>Hoàng Mai, Hà Nội</Flex>
 					</Flex>
 					<Flex>
-						<Flex minWidth={'200'}>
-							<li>
-								<b>Tạm tính</b>
-							</li>
-						</Flex>
+						<Typography>Tạm tính</Typography>
+						<Spacer />
 						<Flex className="text-red-500">
-							<b>3,290,000₫</b>
+							<Typography>3,290,000₫</Typography>
 						</Flex>
 					</Flex>
 					<Flex>
-						<Flex minWidth={'200'}>
-							<li>
-								<b>Phí vận chuyển</b>
-							</li>
-						</Flex>
+						<Typography>Phí vận chuyển</Typography>
+						<Spacer />
 						<Flex className="text-red-500">
-							<b>Miễn phí</b>
+							<Typography>Miễn phí</Typography>
 						</Flex>
 					</Flex>
 					<Flex>
-						<Flex minWidth={'200'}>
-							<li>
-								<b>Tổng tiền</b>
-							</li>
-						</Flex>
+						<Typography>Tổng tiền</Typography>
+						<Spacer />
 						<Flex className="text-red-500">
-							<b>3,290,000₫</b>
+							<Typography>3,290,000₫</Typography>
 						</Flex>
 					</Flex>
-					<hr></hr>
-					<p className="text-2xl">Chọn hình thức thanh toán</p>
-					{/* <Radio name="type" label="Thanh toán COD" defaultChecked /> */}
+					<Divider />
+					<Typography className="text-2xl">
+						Chọn hình thức thanh toán
+					</Typography>
+					<Radio
+						name="type"
+						label="Thanh toán COD"
+						defaultChecked
+						crossOrigin=""
+					/>
 				</Flex>
 			</CardBody>
 		</Card>

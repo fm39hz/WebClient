@@ -1,10 +1,3 @@
-import { Flex, Spacer } from '@chakra-ui/react';
-import { ProductProps } from 'components/Products/ProductCard';
-import CartPage2 from './CartPage2';
-import CartPage3 from './CartPage3';
-import CartPage4 from './CartPage4';
-import CartProgressBar from 'components/Cart/CartProgressBar';
-import { useState } from 'react';
 import {
 	Button,
 	Card,
@@ -12,9 +5,16 @@ import {
 	CardFooter,
 	CardHeader,
 } from '@material-tailwind/react';
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
-import CartPage1 from './CartPage1';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Flex, Spacer } from '@chakra-ui/react';
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
+import { ProductProps } from 'components/Products/ProductCard';
+import CartProgressBar from 'components/Cart/CartProgressBar';
+import CartPage1 from './CartPage1';
+import CartPage2 from './CartPage2';
+import CartPage3 from './CartPage3';
+import CartPage4 from './CartPage4';
 
 export type ShoppingItems = {
 	appliedPromoteStrategy: {

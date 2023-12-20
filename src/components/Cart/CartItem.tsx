@@ -37,6 +37,7 @@ const CartItem = (props: ShoppingItems) => {
 					props.id.toString(),
 				),
 			);
+
 			if (_stateResponses.status == 200) {
 				setPrice((await _price.json()) as number);
 				return;
@@ -46,7 +47,7 @@ const CartItem = (props: ShoppingItems) => {
 		putData();
 	}, [quantity, isSelected]);
 	return (
-		<Flex className="flex-row my-1 min-w-max h-fit gap-4 border-2 rounded-sm">
+		<Flex className="flex-row my-1 h-fit gap-4 border-2 rounded-sm">
 			<Checkbox
 				className="scale-75 "
 				color="red"
@@ -58,13 +59,13 @@ const CartItem = (props: ShoppingItems) => {
 				<Image src={props.target.imageUrl} className="w-16 h-16" />
 			</Flex>
 			<Typography className="mt-1">{props.target.name}</Typography>
-			<Spacer />
+			<Spacer className="px-56" />
 			<Flex className="flex-col justify-end mx-4">
 				<Typography className="line-through">
-					{(props.target.basePrice * quantity).toLocaleString()}đ
+					{(props.target.basePrice * quantity).toLocaleString()}₫
 				</Typography>
 				<Typography className="text-red-500">
-					{price.toLocaleString()}đ
+					{price.toLocaleString()}₫
 				</Typography>
 				<Flex className="flex-row">
 					<Spacer />
