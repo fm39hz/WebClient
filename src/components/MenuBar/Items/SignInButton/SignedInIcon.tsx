@@ -17,14 +17,11 @@ import {
 } from '@material-tailwind/react';
 import { GetApi, ServiceEndPoint } from 'Constant';
 import { UserProps } from 'pages/ProfilePage';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { GetItem, SetItem } from 'utils/StorageUtils';
 
-type SignedInIconProps = {
-	setSignIn: Dispatch<SetStateAction<boolean>>;
-};
-
-const SignedInIcon = (props: SignedInIconProps) => {
+const SignedInIcon = () => {
 	const [user, setUser] = useState({} as UserProps);
 	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
@@ -98,11 +95,10 @@ const SignedInIcon = (props: SignedInIconProps) => {
 					onClick={async () => {
 						await fetch(
 							GetApi(ServiceEndPoint.logout).concat(
-								'/' + localStorage.getItem('uid')!,
+								'/' + GetItem('uid')!,
 							),
 						);
-						localStorage.removeItem('uid');
-						props.setSignIn(false);
+						SetItem('uid', null);
 					}}
 				>
 					<ArrowLeftCircleIcon className="w-4 h-4" />
