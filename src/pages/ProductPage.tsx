@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react';
 import { GetApi, ServiceEndPoint } from 'Constant';
-import { ProductProps } from 'components/Products/ProductCard';
+import { ProductProps } from 'Types';
 import ProductPageBody from 'components/Products/ProductPageBody';
 import ProductPageHeader from 'components/Products/ProductPageHeader';
 import { useState, useEffect } from 'react';

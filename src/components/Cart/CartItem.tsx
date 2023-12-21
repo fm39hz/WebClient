@@ -1,9 +1,9 @@
 import { Flex, Spacer, Image } from '@chakra-ui/react';
 import { Checkbox, Typography } from '@material-tailwind/react';
 import { Input } from '@mui/material';
-import { ShoppingItems } from '../../pages/CartPages/CartPage';
 import { useEffect, useState } from 'react';
 import { GetApi, ServiceEndPoint } from 'Constant';
+import { ShoppingItems } from 'Types';
 
 const CartItem = (props: ShoppingItems) => {
 	const [isSelected, setIsSelected] = useState(props.isSelected == 1);
@@ -33,7 +33,6 @@ const CartItem = (props: ShoppingItems) => {
 			);
 			const _price = await fetch(
 				GetApi(ServiceEndPoint.promotedPrice).concat(
-					'/',
 					props.id.toString(),
 				),
 			);

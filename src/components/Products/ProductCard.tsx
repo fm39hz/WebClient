@@ -2,21 +2,10 @@ import { Flex, Image, Text } from '@chakra-ui/react';
 import { Card, Typography } from '@material-tailwind/react';
 import { Divider } from '@mui/material';
 import { GetApi, ServiceEndPoint } from 'Constant';
+import { ProductProps } from 'Types';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export type ProductProps = {
-	name: string;
-	specificationId: number;
-	description: string;
-	imageUrl: string;
-	basePrice: number;
-	inStock: number;
-	manufacturer: string;
-	reviewCount: number;
-	rating: number;
-	id: number;
-};
 type ProductCartProps = {
 	id: number;
 };

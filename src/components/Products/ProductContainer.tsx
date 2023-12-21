@@ -1,7 +1,8 @@
 import { Flex, Text } from '@chakra-ui/react';
-import ProductCard, { ProductProps } from './ProductCard';
+import ProductCard from './ProductCard';
 import { GetApi, ServiceEndPoint } from 'Constant';
 import { useState, useEffect } from 'react';
+import { ProductProps } from 'Types';
 
 type ProductContainerProps = {
 	title: string;
@@ -9,7 +10,6 @@ type ProductContainerProps = {
 
 const ProductContainer = (props: ProductContainerProps) => {
 	const [products, setProducts] = useState({} as ProductProps[]);
-	const [isLoading, setIsLoading] = useState(true);
 	const fetchData = async () => {
 		try {
 			const _products = await fetch(GetApi(ServiceEndPoint.products)!);

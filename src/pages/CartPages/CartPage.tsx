@@ -9,32 +9,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Flex, Spacer } from '@chakra-ui/react';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
-import { ProductProps } from 'components/Products/ProductCard';
 import CartProgressBar from 'components/Cart/CartProgressBar';
 import CartPage1 from './CartPage1';
 import CartPage2 from './CartPage2';
 import CartPage3 from './CartPage3';
 import CartPage4 from './CartPage4';
 import { GetApi, ServiceEndPoint } from 'Constant';
+import { CartProps } from 'Types';
 
-export type ShoppingItems = {
-	appliedPromoteStrategy: {
-		details: string;
-	};
-	promoteType: string;
-	target: ProductProps;
-	productId: number;
-	cartId: number;
-	quantity: number;
-	isSelected: number;
-	id: number;
-};
-
-export type CartProps = {
-	userUid: string;
-	shoppingItems: ShoppingItems[];
-	id: number;
-};
 
 const CartPages = () => {
 	const [cart, setCart] = useState({} as CartProps);

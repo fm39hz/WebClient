@@ -5,9 +5,9 @@ import { Flex } from '@chakra-ui/react';
 import ProfilePage from 'pages/ProfilePage';
 import CartPages from 'pages/CartPages/CartPage';
 import { useEffect, useState } from 'react';
-import { ProductProps } from 'components/Products/ProductCard';
 import ProductPage from './ProductPage';
 import { GetApi, ServiceEndPoint } from 'Constant';
+import { ProductProps } from 'Types';
 
 type MainPagesProps = {
 	setIsSignedIn: CallableFunction;

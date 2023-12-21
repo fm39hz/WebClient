@@ -1,11 +1,28 @@
 import { Text } from '@chakra-ui/react';
 import { ShoppingCartIcon } from '@heroicons/react/24/solid';
 import { Badge } from '@material-tailwind/react';
-import { useState } from 'react';
+import { GetApi, ServiceEndPoint } from 'Constant';
+import { CartProps } from 'Types';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { GetItem } from 'utils/StorageUtils';
 
 const CartIcon = () => {
 	const [inCart, setInCart] = useState(0);
+	useEffect(() => {
+		const fetchCart = async () => {
+			try {
+				const _cart = await fetch(
+					GetApi(ServiceEndPoint.cart).concat('/', GetItem('uid')),
+				);
+				var _inCart = ((await _cart.json()) as CartProps).shoppingItems;
+				setInCart(Array.from(_inCart).length);
+			} catch (error) {
+				console.error('Error fetching data:', error);
+			}
+		};
+		fetchCart();
+	}, []);
 	return (
 		<Link
 			className="rounded-xl flex flex-row items-center my-0.5 bg-inherit"

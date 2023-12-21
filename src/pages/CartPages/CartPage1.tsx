@@ -1,9 +1,9 @@
 import { Card, CardBody, Flex } from '@chakra-ui/react';
-import { CartProps, ShoppingItems } from './CartPage';
 import CartItem from '../../components/Cart/CartItem';
 import { Typography } from '@material-tailwind/react';
 import { useEffect, useState } from 'react';
 import { GetApi, ServiceEndPoint } from 'Constant';
+import { CartProps, ShoppingItems } from 'Types';
 
 const CartPage1 = () => {
 	const [items, setItems] = useState({} as ShoppingItems[]);
