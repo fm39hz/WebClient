@@ -13,7 +13,7 @@ const CartIcon = () => {
 		const fetchCart = async () => {
 			try {
 				const _cart = await fetch(
-					GetApi(ServiceEndPoint.cart).concat('/', GetItem('uid')),
+					GetApi(ServiceEndPoint.cart).concat(GetItem('uid')),
 				);
 				var _inCart = ((await _cart.json()) as CartProps).shoppingItems;
 				setInCart(Array.from(_inCart).length);
