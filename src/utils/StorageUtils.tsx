@@ -1,4 +1,4 @@
-export const SetItem = (key: string, value: string): void => {
+export const SetItem = (key: string, value: any): void => {
 	if (IsLocalStorageSupport()) {
 		localStorage.setItem(key, value);
 	}
