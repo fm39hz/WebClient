@@ -1,15 +1,10 @@
-import { Dispatch, SetStateAction, useState } from 'react';
+import { useState } from 'react';
 import { Flex, Text } from '@chakra-ui/react';
 import { Button } from '@material-tailwind/react';
 import { SetItem } from 'utils/StorageUtils';
 import { GetApi, ServiceEndPoint } from 'Constant';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '@mui/material';
-
-type SignInProps = {
-	setSignedIn: Dispatch<SetStateAction<boolean>>;
-	isSignedIn: boolean;
-};
 
 const BuildOption = (email: string, password: string) => {
 	return {
@@ -24,7 +19,7 @@ const BuildOption = (email: string, password: string) => {
 	};
 };
 
-const SignInPage = (props: SignInProps) => {
+const SignInPage = () => {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -54,7 +49,7 @@ const SignInPage = (props: SignInProps) => {
 					);
 					if (response.status == 200) {
 						SetItem('uid', await response.text());
-						props.setSignedIn.call(props.isSignedIn, true);
+						SetItem('isSignedIn', true);
 						navigate('/Home');
 						return;
 					}
