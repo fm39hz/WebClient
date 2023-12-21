@@ -1,6 +1,6 @@
 import { Flex, Spacer } from '@chakra-ui/react';
 import MenuBar from '../components/MenuBar/Menubar';
-import MainPages from '../components/PageRouting/MainPages';
+import MainPages from './MainPages';
 import Sidebar from 'components/Sidebar/Sidebar';
 import Footer from 'components/Footer/Footer';
 
