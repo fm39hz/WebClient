@@ -11,7 +11,6 @@ const CartPage1 = () => {
 		const fetchData = async () => {
 			const _cart = await fetch(
 				GetApi(ServiceEndPoint.cart).concat(
-					'/',
 					localStorage.getItem('uid')!,
 				),
 			);

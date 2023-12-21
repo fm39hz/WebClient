@@ -10,7 +10,6 @@ const App = () => {
 	const [isSignedIn, setIsSignedIn] = useState(GetItem('uid') !== null);
 	useEffect(() => {
 		console.log('UserUid:'.concat(GetItem('uid')));
-		console.log(isSignedIn);
 	}, [isSignedIn]);
 	return (
 		<Flex className="flex-col bg-[#e2e2e2] text-black min-h-screen min-w-full">

@@ -1,7 +1,8 @@
-import { Flex, Image, Text } from '@chakra-ui/react';
-import { Card, CardBody } from '@material-tailwind/react';
+import { Flex } from '@chakra-ui/react';
 import { GetApi, ServiceEndPoint } from 'Constant';
 import { ProductProps } from 'components/Products/ProductCard';
+import ProductPageBody from 'components/Products/ProductPageBody';
+import ProductPageHeader from 'components/Products/ProductPageHeader';
 import { useState, useEffect } from 'react';
 
 type ProductPageProps = {
@@ -10,6 +11,7 @@ type ProductPageProps = {
 
 const ProductPage = (props: ProductPageProps) => {
 	const [product, setProduct] = useState({} as ProductProps);
+	const [promotedPrice, setPromotedPrice] = useState(0);
 	useEffect(() => {
 		const fetchProducts = async () => {
 			try {
@@ -19,7 +21,11 @@ const ProductPage = (props: ProductPageProps) => {
 						props.id.toString(),
 					),
 				);
+				const _promotedPrice = await fetch(
+					GetApi(ServiceEndPoint.promote).concat('/' + props.id),
+				);
 				setProduct(await _products.json());
+				setPromotedPrice(await _promotedPrice.json());
 			} catch (error) {
 				console.error('Error fetching data:', error);
 			}
@@ -27,13 +33,15 @@ const ProductPage = (props: ProductPageProps) => {
 		fetchProducts();
 	}, []);
 	return (
-		<Flex className="m-8">
-			<Card>
-				<CardBody className="flex flex-row min-h-screen w-full">
-					<Image className="w-64 h-64" src={product.imageUrl} />
-					<Text className=" px-64">{product.name}</Text>
-				</CardBody>
-			</Card>
+		<Flex className="m-8 flex-col gap-8">
+			<ProductPageHeader
+				product={product}
+				promotedPrice={promotedPrice}
+			/>
+			<ProductPageBody
+				type={product.type}
+				specificationId={product.specificationId}
+			/>
 		</Flex>
 	);
 };
