@@ -99,6 +99,8 @@ const SignedInIcon = () => {
 							),
 						);
 						SetItem('uid', null);
+						SetItem('isSignedIn', false);
+						window.location.reload();
 					}}
 				>
 					<ArrowLeftCircleIcon className="w-4 h-4" />
