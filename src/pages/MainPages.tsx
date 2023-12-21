@@ -9,7 +9,11 @@ import { ProductProps } from 'components/Products/ProductCard';
 import ProductPage from './ProductPage';
 import { GetApi, ServiceEndPoint } from 'Constant';
 
-const MainPages = () => {
+type MainPagesProps = {
+	setIsSignedIn: CallableFunction;
+};
+
+const MainPages = (props: MainPagesProps) => {
 	const [products, setProducts] = useState({} as ProductProps[]);
 	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
@@ -40,7 +44,7 @@ const MainPages = () => {
 		},
 		{
 			path: '/SignIn',
-			component: <SignInPage />,
+			component: <SignInPage setIsSignedIn={props.setIsSignedIn} />,
 		},
 		{
 			path: '/Cart',

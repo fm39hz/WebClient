@@ -21,7 +21,11 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GetItem, SetItem } from 'utils/StorageUtils';
 
-const SignedInIcon = () => {
+type SignedInIconProps = {
+	setIsSignedIn: CallableFunction;
+};
+
+const SignedInIcon = (props: SignedInIconProps) => {
 	const [user, setUser] = useState({} as UserProps);
 	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
@@ -98,8 +102,8 @@ const SignedInIcon = () => {
 								'/' + GetItem('uid')!,
 							),
 						);
+						props.setIsSignedIn(false);
 						SetItem('uid', null);
-						SetItem('isSignedIn', false);
 						window.location.reload();
 					}}
 				>

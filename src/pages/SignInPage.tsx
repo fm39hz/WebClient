@@ -6,6 +6,10 @@ import { GetApi, ServiceEndPoint } from 'Constant';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '@mui/material';
 
+type SignInPageProps = {
+	setIsSignedIn: CallableFunction;
+};
+
 const BuildOption = (email: string, password: string) => {
 	return {
 		method: 'POST',
@@ -19,7 +23,7 @@ const BuildOption = (email: string, password: string) => {
 	};
 };
 
-const SignInPage = () => {
+const SignInPage = (props: SignInPageProps) => {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -49,7 +53,7 @@ const SignInPage = () => {
 					);
 					if (response.status == 200) {
 						SetItem('uid', await response.text());
-						SetItem('isSignedIn', true);
+						props.setIsSignedIn(true);
 						navigate('/Home');
 						return;
 					}
