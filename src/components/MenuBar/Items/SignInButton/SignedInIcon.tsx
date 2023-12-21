@@ -19,7 +19,7 @@ import { GetApi, ServiceEndPoint } from 'Constant';
 import { UserProps } from 'pages/ProfilePage';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { GetItem, SetItem } from 'utils/StorageUtils';
+import { GetItem } from 'utils/StorageUtils';
 
 type SignedInIconProps = {
 	setIsSignedIn: CallableFunction;
@@ -99,12 +99,12 @@ const SignedInIcon = (props: SignedInIconProps) => {
 					onClick={async () => {
 						await fetch(
 							GetApi(ServiceEndPoint.logout).concat(
-								'/' + GetItem('uid')!,
+								'/',
+								GetItem('uid')!,
 							),
 						);
 						props.setIsSignedIn(false);
-						SetItem('uid', null);
-						window.location.reload();
+						localStorage.removeItem('uid');
 					}}
 				>
 					<ArrowLeftCircleIcon className="w-4 h-4" />

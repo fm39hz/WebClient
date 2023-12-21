@@ -50,7 +50,7 @@ const MainPages = (props: MainPagesProps) => {
 	].concat(
 		Array.from(products).map((product) => ({
 			path: '/Product/'.concat(product.id.toString()),
-			component: <ProductPage {...product} />,
+			component: <ProductPage id={product.id} />,
 		})),
 	);
 	return (
