@@ -1,4 +1,4 @@
-import { Flex, Image } from '@chakra-ui/react';
+import { Flex, Image, Text } from '@chakra-ui/react';
 import { Card, Typography } from '@material-tailwind/react';
 import { Divider } from '@mui/material';
 import { GetApi, ServiceEndPoint } from 'Constant';
@@ -51,9 +51,9 @@ const ProductCard = (props: ProductCartProps) => {
 				/>
 				<Divider className="w-full" />
 				<Flex className="flex-col mx-2 w-full">
-					<Typography className="text-xl h-12 text-black font-semibold mx-1">
+					<Text className="text-xl h-12 text-black font-semibold mx-1">
 						{product.name}
-					</Typography>
+					</Text>
 					<Typography className="mx-1 font-semibold text-gray-400 line-through">
 						{Number(product.basePrice).toLocaleString()}₫
 					</Typography>

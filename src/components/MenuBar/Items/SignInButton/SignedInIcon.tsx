@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react';
+import { Flex, Text } from '@chakra-ui/react';
 import {
 	ArrowLeftCircleIcon,
 	Cog6ToothIcon,
@@ -56,9 +56,9 @@ const SignedInIcon = (props: SignedInIconProps) => {
 						<Avatar src={user.photoUrl} className="w-8 h-8" />
 					)}
 					<Flex className="flex-col items-center">
-						<Typography className="text-white mr-2 text-sm">
+						<Text className="text-white mr-2 text-sm">
 							{user.displayName}
-						</Typography>
+						</Text>
 					</Flex>
 				</Button>
 			</MenuHandler>
