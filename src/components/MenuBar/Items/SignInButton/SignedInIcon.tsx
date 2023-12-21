@@ -41,7 +41,7 @@ const SignedInIcon = () => {
 			}
 		};
 		fetchData();
-	}, []);
+	}, [GetItem('uid')]);
 	return (
 		<Menu>
 			<MenuHandler>

@@ -1,57 +1,42 @@
 import SignInPage from 'pages/SignInPage';
 import HomePage from 'pages/HomePage';
 import { Route, Routes } from 'react-router-dom';
-import { Dispatch, SetStateAction } from 'react';
-import { ProductProps } from 'components/Products/ProductCard';
 import { Flex } from '@chakra-ui/react';
-import ProfilePage, { UserProps } from 'pages/ProfilePage';
-import CartPages, { CartProps } from 'pages/CartPages/CartPage';
-import ProductPage from 'pages/ProductPage';
+import ProfilePage from 'pages/ProfilePage';
+import CartPages from 'pages/CartPages/CartPage';
 
-type MainPageProps = {
-	setSignIn: Dispatch<SetStateAction<boolean>>;
-	isSignedIn: boolean;
-	products: ProductProps[];
-	user: UserProps;
-	cart: CartProps;
-};
-
-const MainPages = (props: MainPageProps) => {
+const MainPages = () => {
 	const publicRoutes = [
 		{
 			path: '/',
-			component: <HomePage products={props.products} />,
+			component: <HomePage />,
 		},
 		{
 			path: '/Home',
-			component: <HomePage products={props.products} />,
+			component: <HomePage />,
 		},
 		{
 			path: '/Profile',
-			component: <ProfilePage {...props.user} />,
+			component: <ProfilePage />,
 		},
 		{
 			path: '/SignIn',
-			component: (
-				<SignInPage
-					setSignedIn={props.setSignIn}
-					isSignedIn={props.isSignedIn}
-				/>
-			),
+			component: <SignInPage />,
 		},
 		{
 			path: '/Cart',
-			component: <CartPages {...props.cart} />,
+			component: <CartPages />,
 		},
-	].concat(
-		props.products.map((product) => {
-			const productPath = {
-				path: '/Product/'.concat(product.id.toString()),
-				component: <ProductPage {...product} />,
-			};
-			return productPath;
-		}),
-	);
+	];
+	// 	.concat(
+	// 	props.products.map((product) => {
+	// 		const productPath = {
+	// 			path: '/Product/'.concat(product.id.toString()),
+	// 			component: <ProductPage {...product} />,
+	// 		};
+	// 		return productPath;
+	// 	}),
+	// )
 	console.log(publicRoutes);
 	return (
 		<Flex className="flex-col bg-inherit">

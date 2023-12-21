@@ -5,7 +5,7 @@ import {
 	CardFooter,
 	CardHeader,
 } from '@material-tailwind/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Flex, Spacer } from '@chakra-ui/react';
 import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/24/solid';
@@ -15,6 +15,7 @@ import CartPage1 from './CartPage1';
 import CartPage2 from './CartPage2';
 import CartPage3 from './CartPage3';
 import CartPage4 from './CartPage4';
+import { GetApi, ServiceEndPoint } from 'Constant';
 
 export type ShoppingItems = {
 	appliedPromoteStrategy: {
@@ -35,9 +36,26 @@ export type CartProps = {
 	id: number;
 };
 
-const CartPages = (props: CartProps) => {
+const CartPages = () => {
+	const [cart, setCart] = useState({} as CartProps);
+	useEffect(() => {
+		const fetchCart = async () => {
+			try {
+				const response = await fetch(
+					GetApi(ServiceEndPoint.users).concat(
+						'/' + localStorage.getItem('uid')!,
+					),
+				);
+				const data = await response.json();
+				setCart(data);
+			} catch (error) {
+				console.error('Error fetching data:', error);
+			}
+		};
+		fetchCart;
+	}, []);
 	const Steps = [
-		<CartPage1 {...props.shoppingItems} />,
+		<CartPage1 {...cart.shoppingItems} />,
 		<CartPage2 />,
 		<CartPage3 />,
 		<CartPage4 />,
