@@ -1,14 +1,12 @@
 FROM node:20
-EXPOSE 3000
-
 WORKDIR /web-client
+EXPOSE 3000
 
 COPY ./*.* ./
 
 RUN npm install
 
-COPY ./src ./
-COPY ./.vitest/ ./
-
+COPY ./src ./src
+COPY ./.vitest ./.vitest
 
 CMD ["npm", "run", "dev", "--verbose"]
