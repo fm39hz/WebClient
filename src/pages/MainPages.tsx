@@ -15,19 +15,16 @@ type MainPagesProps = {
 
 const MainPages = (props: MainPagesProps) => {
 	const [products, setProducts] = useState({} as ProductProps[]);
-	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
 		const fetchProducts = async () => {
 			try {
 				const _products = await fetch(GetApi(ServiceEndPoint.products));
 				setProducts(await _products.json());
-				setIsLoading(false);
 			} catch (error) {
 				console.error('Error fetching data:', error);
-				setIsLoading(false);
 			}
 		};
-		fetchProducts;
+		fetchProducts();
 	}, []);
 	const publicRoutes = [
 		{
@@ -51,17 +48,11 @@ const MainPages = (props: MainPagesProps) => {
 			component: <CartPages />,
 		},
 	].concat(
-		Object.values(products).map((product) => {
-			const productPath = {
-				path: '/Product/'.concat(product.id.toString()),
-				component: <ProductPage {...product} />,
-			};
-			return productPath;
-		}),
+		Array.from(products).map((product) => ({
+			path: '/Product/'.concat(product.id.toString()),
+			component: <ProductPage {...product} />,
+		})),
 	);
-	if (isLoading) {
-		console.log(publicRoutes);
-	}
 	return (
 		<Flex className="flex-col bg-inherit">
 			<Routes>
