@@ -5,9 +5,8 @@ import { Typography } from '@material-tailwind/react';
 import { useEffect, useState } from 'react';
 import { GetApi, ServiceEndPoint } from 'Constant';
 
-const CartPage1 = (props: ShoppingItems[]) => {
-	console.log(props);
-	const [items, setItems] = useState(props);
+const CartPage1 = () => {
+	const [items, setItems] = useState({} as ShoppingItems[]);
 	useEffect(() => {
 		const fetchData = async () => {
 			const _cart = await fetch(
@@ -17,14 +16,17 @@ const CartPage1 = (props: ShoppingItems[]) => {
 				),
 			);
 			setItems(((await _cart.json()) as CartProps).shoppingItems);
+
+			console.log('fetched');
+			console.log(items);
 		};
 		fetchData();
-	}, [props]);
+	}, []);
 	return (
 		<Card className="w-50 bg-white rounded-xl min-w-max w-fit border-spacing-3">
 			<CardBody className="justify-center m-2">
 				<Flex className="flex-col w-fit h-52 gap-2">
-					{Array.from(props).length == 0 ? (
+					{items.length == 0 ? (
 						<Typography>
 							Không có sản phẩm trong giỏ hàng
 						</Typography>

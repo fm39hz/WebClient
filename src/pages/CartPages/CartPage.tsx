@@ -54,12 +54,7 @@ const CartPages = () => {
 		};
 		fetchCart;
 	}, []);
-	const Steps = [
-		<CartPage1 {...cart.shoppingItems} />,
-		<CartPage2 />,
-		<CartPage3 />,
-		<CartPage4 />,
-	];
+	const Steps = [<CartPage1 />, <CartPage2 />, <CartPage3 />, <CartPage4 />];
 	const navigate = useNavigate();
 	const [step, setStep] = useState(0);
 	return (
