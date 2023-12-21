@@ -22,9 +22,9 @@ const ProductPage = (props: ProductPageProps) => {
 					),
 				);
 				const _promotedPrice = await fetch(
-					GetApi(ServiceEndPoint.promote).concat('/' + props.id),
+					GetApi(ServiceEndPoint.promote).concat(props.id.toString()),
 				);
-				setProduct(await _products.json());
+				+setProduct(await _products.json());
 				setPromotedPrice(await _promotedPrice.json());
 			} catch (error) {
 				console.error('Error fetching data:', error);

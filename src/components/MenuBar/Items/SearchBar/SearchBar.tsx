@@ -2,10 +2,10 @@ import { Flex } from '@chakra-ui/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import { IconButton } from '@material-tailwind/react';
 import { Input } from '@mui/material';
-import { ProductProps } from 'components/Products/ProductCard';
 import { useEffect, useState } from 'react';
 import SearchItem from './SearchItem';
 import { GetApi, ServiceEndPoint } from 'Constant';
+import { ProductProps } from 'Types';
 
 const SearchBar = () => {
 	const [products, setProducts] = useState({} as ProductProps[]);

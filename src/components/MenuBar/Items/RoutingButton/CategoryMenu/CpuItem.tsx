@@ -6,18 +6,9 @@ import {
 	MenuList,
 } from '@material-tailwind/react';
 import { GetApi, ServiceEndPoint } from 'Constant';
-import { ProductProps } from 'components/Products/ProductCard';
+import { CpuProps } from 'Types';
 import { useEffect, useState } from 'react';
 
-type CpuProps = {
-	socket: string;
-	tdp: number;
-	core: number;
-	thread: number;
-	frequency: number;
-	product: ProductProps;
-	id: number;
-};
 const getNonDuplicatedValues = (arr: any[]) =>
 	arr.filter((item, index) => {
 		var _arr = arr;

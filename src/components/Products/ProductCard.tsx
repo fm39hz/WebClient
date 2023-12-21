@@ -17,10 +17,12 @@ const ProductCard = (props: ProductCartProps) => {
 		const fetchData = async () => {
 			try {
 				const _promotedPrice = await fetch(
-					GetApi(ServiceEndPoint.promote).concat('/' + props.id),
+					GetApi(ServiceEndPoint.promote).concat(props.id.toString()),
 				);
 				const _product = await fetch(
-					GetApi(ServiceEndPoint.products).concat('/' + props.id),
+					GetApi(ServiceEndPoint.products).concat(
+						props.id.toString(),
+					),
 				);
 				setProduct(await _product.json());
 				setPromotedPrice(await _promotedPrice.json());

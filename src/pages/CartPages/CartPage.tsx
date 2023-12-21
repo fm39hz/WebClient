@@ -16,7 +16,7 @@ import CartPage3 from './CartPage3';
 import CartPage4 from './CartPage4';
 import { GetApi, ServiceEndPoint } from 'Constant';
 import { CartProps } from 'Types';
-
+import { GetItem } from 'utils/StorageUtils';
 
 const CartPages = () => {
 	const [cart, setCart] = useState({} as CartProps);
@@ -24,9 +24,7 @@ const CartPages = () => {
 		const fetchCart = async () => {
 			try {
 				const response = await fetch(
-					GetApi(ServiceEndPoint.users).concat(
-						'/' + localStorage.getItem('uid')!,
-					),
+					GetApi(ServiceEndPoint.users).concat(GetItem('uid')),
 				);
 				const data = await response.json();
 				setCart(data);

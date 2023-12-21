@@ -1,6 +1,6 @@
 import { Image } from '@chakra-ui/react';
 import { MenuItem } from '@material-tailwind/react';
-import { ProductProps } from 'components/Products/ProductCard';
+import { ProductProps } from 'Types';
 
 const SearchItem = (props: ProductProps) => {
 	return (

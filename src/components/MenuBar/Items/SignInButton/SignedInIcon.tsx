@@ -16,7 +16,7 @@ import {
 	Typography,
 } from '@material-tailwind/react';
 import { GetApi, ServiceEndPoint } from 'Constant';
-import { UserProps } from 'pages/ProfilePage';
+import { UserProps } from 'Types';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GetItem } from 'utils/StorageUtils';
@@ -33,7 +33,7 @@ const SignedInIcon = (props: SignedInIconProps) => {
 			try {
 				const response = await fetch(
 					GetApi(ServiceEndPoint.users).concat(
-						'/' + localStorage.getItem('uid')!,
+						localStorage.getItem('uid')!,
 					),
 				);
 				const data = await response.json();

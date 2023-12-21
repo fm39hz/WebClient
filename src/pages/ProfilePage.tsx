@@ -2,6 +2,7 @@ import { Flex, Image, Text } from '@chakra-ui/react';
 import { GetApi, ServiceEndPoint } from 'Constant';
 import { UserProps } from 'Types';
 import { useEffect, useState } from 'react';
+import { GetItem } from 'utils/StorageUtils';
 
 const ProfilePage = () => {
 	const [user, setUser] = useState({} as UserProps);
@@ -9,9 +10,7 @@ const ProfilePage = () => {
 		const fetchData = async () => {
 			try {
 				const response = await fetch(
-					GetApi(ServiceEndPoint.users).concat(
-						'/' + localStorage.getItem('uid')!,
-					),
+					GetApi(ServiceEndPoint.users).concat(GetItem('uid')),
 				);
 				const data = await response.json();
 				setUser(data);
