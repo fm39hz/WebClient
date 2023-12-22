@@ -82,6 +82,7 @@ const CartPages = () => {
 						<Spacer />
 						<Button
 							className="flex items-center gap-2"
+							disabled={cartPrice == 0}
 							onClick={() => {
 								if (step < 3) setStep(step + 1);
 							}}
