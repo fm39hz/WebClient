@@ -18,7 +18,7 @@ const CartProgressBar = (props: CartProgress) => {
 	useEffect(() => {}, [props.step]);
 	return (
 		<Flex className="flex-row mx-2 px-64 rounded-md">
-			<Flex className="h-fit w-full gap-4 justify-between mt-5">
+			<Flex className="h-fit mb-4 w-full gap-4 justify-between mt-5">
 				<Flex
 					className={'flex-col items-center'.concat(
 						checkOutStep(props.step, 0),
