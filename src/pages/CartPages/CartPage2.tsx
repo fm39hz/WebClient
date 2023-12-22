@@ -2,10 +2,14 @@ import { Flex } from '@chakra-ui/react';
 import { Card, CardBody, Radio, Typography } from '@material-tailwind/react';
 import { Input } from '@mui/material';
 
-const CartPage2 = () => {
+type CartPage2Props = {
+	price: number;
+};
+
+const CartPage2 = (props: CartPage2Props) => {
 	return (
 		<Card className="bg-white rounded-xl">
-			<CardBody className="items-center gap-8 m-6 justify-center">
+			<CardBody className="items-center justify-center">
 				<Flex className="flex-col mt-3 mb-3 gap-1 items-center">
 					<Typography>Thông tin mua hàng</Typography>
 					<Flex className="gap-2">
@@ -36,7 +40,7 @@ const CartPage2 = () => {
 					<Flex className="justify-between">
 						Tổng tiền:
 						<Typography className="text-red-500">
-							3,290,000đ
+							{props.price.toLocaleString()}đ
 						</Typography>
 					</Flex>
 				</Flex>

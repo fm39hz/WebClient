@@ -7,7 +7,11 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { GetItem } from 'utils/StorageUtils';
 
-const CartIcon = () => {
+type CartIconProps = {
+	isSignedIn: boolean;
+};
+
+const CartIcon = (props: CartIconProps) => {
 	const [inCart, setInCart] = useState(0);
 	useEffect(() => {
 		const fetchCart = async () => {
@@ -22,11 +26,11 @@ const CartIcon = () => {
 			}
 		};
 		fetchCart();
-	}, []);
+	}, [props.isSignedIn]);
 	return (
 		<Link
 			className="rounded-xl flex flex-row items-center my-0.5 bg-inherit"
-			to="/Cart"
+			to={props.isSignedIn ? '/Cart' : '/SignIn'}
 		>
 			<Badge
 				className="bg-[#FFC700]"

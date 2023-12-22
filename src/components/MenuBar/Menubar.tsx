@@ -17,7 +17,7 @@ const MenuBar = (props: MenuBarProps) => {
 			<MenuIcon />
 			<CategoryIcon />
 			<SearchBar />
-			<CartIcon />
+			<CartIcon isSignedIn={props.isSignedIn} />
 			{props.isSignedIn ? (
 				<SignedInIcon setIsSignedIn={props.setSignIn} />
 			) : (

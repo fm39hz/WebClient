@@ -18,7 +18,7 @@ import {
 import { GetApi, ServiceEndPoint } from 'Constant';
 import { UserProps } from 'Types';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { GetItem } from 'utils/StorageUtils';
 
 type SignedInIconProps = {
@@ -28,6 +28,7 @@ type SignedInIconProps = {
 const SignedInIcon = (props: SignedInIconProps) => {
 	const [user, setUser] = useState({} as UserProps);
 	const [isLoading, setIsLoading] = useState(true);
+	const navigate = useNavigate();
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -105,6 +106,7 @@ const SignedInIcon = (props: SignedInIconProps) => {
 						);
 						props.setIsSignedIn(false);
 						localStorage.removeItem('uid');
+						navigate('/Home');
 					}}
 				>
 					<ArrowLeftCircleIcon className="w-4 h-4" />

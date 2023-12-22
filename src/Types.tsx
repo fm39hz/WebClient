@@ -2,6 +2,8 @@ export type ShoppingItems = {
 	appliedPromoteStrategy: {
 		details: string;
 	};
+	orderStatus: string;
+	orderId: number;
 	promoteType: string;
 	target: ProductProps;
 	productId: number;

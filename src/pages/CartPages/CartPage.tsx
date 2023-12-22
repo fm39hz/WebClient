@@ -42,7 +42,7 @@ const CartPages = () => {
 	}, [itemChanged]);
 	const Steps = [
 		<CartPage1 itemChanged={setitemChanged} />,
-		<CartPage2 />,
+		<CartPage2 price={cartPrice} />,
 		<CartPage3 />,
 		<CartPage4 />,
 	];
