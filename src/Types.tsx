@@ -27,6 +27,14 @@ export type ProductProps = {
 	id: number;
 };
 
+export type ShippingInformationProps = {
+	userUid: string;
+	name: string;
+	phoneNumber: string;
+	address: string;
+	gender: string;
+};
+
 export type UserProps = {
 	uid: string;
 	displayName: string;
