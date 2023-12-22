@@ -1,6 +1,9 @@
 import { Flex, Image, Spacer, Text } from '@chakra-ui/react';
-import { Button, Card, CardBody } from '@material-tailwind/react';
-import { ProductProps } from 'Types';
+import { Button, Card, CardBody, Typography } from '@material-tailwind/react';
+import { GetApi, ServiceEndPoint } from 'Constant';
+import { CartProps, ProductProps, PromoteDetailsProps } from 'Types';
+import { useState, useEffect } from 'react';
+import { GetItem } from 'utils/StorageUtils';
 
 type ProductPageHeaderProps = {
 	product: ProductProps;
@@ -8,35 +11,88 @@ type ProductPageHeaderProps = {
 };
 
 const ProductPageHeader = (props: ProductPageHeaderProps) => {
+	const [cart, setCart] = useState({} as CartProps);
+	const [promoteDetails, setPromoteDetails] = useState(
+		{} as PromoteDetailsProps,
+	);
+	const BuildOption = () => {
+		return {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				productId: props.product.id,
+				cartId: cart.id,
+				quantity: 1,
+				isSelected: 1,
+			}),
+		};
+	};
+	useEffect(() => {
+		const fetchData = async () => {
+			const _specification = await fetch(
+				GetApi(ServiceEndPoint.promoteDetails).concat(
+					props.product.id.toString(),
+				),
+			);
+			const _cart = await fetch(
+				GetApi(ServiceEndPoint.cart).concat(GetItem('uid')),
+			);
+			setCart(await _cart.json());
+			setPromoteDetails(await _specification.json());
+		};
+		if (props.product.id !== undefined) {
+			fetchData();
+		}
+	}, [props]);
 	return (
 		<Card>
-			<CardBody className="flex flex-row h-fit w-full gap-2">
-				<Image
-					className="w-64 h-64 border-separate rounded-md shadow-sm"
-					src={props.product.imageUrl}
-				/>
-				<Flex className="flex-col bg-blue-gray-500">
-					<Flex className=" flex-col text-left ml-2 pr-64 gap-2">
-						<Text className=" bg-blue-gray-300 text-2xl font-bold">
-							{props.product.name}
-						</Text>
-						<Text className=" bg-brown-300 text-md font-semibold">
-							{props.product.rating}★
-						</Text>
-						<Flex className="flex-row gap-4 text-xl font-semibold ">
-							<Text className=" bg-brown-300">
-								{props.promotedPrice}₫
+			<CardBody className="flex flex-col h-fit w-full">
+				<Flex className="flex-row gap-4">
+					<Image
+						className="w-72 h-72 border-separate rounded-md shadow-sm"
+						src={props.product.imageUrl}
+					/>
+					<Flex className="flex-col">
+						<Flex className=" flex-col text-left ml-2 pr-64 gap-2">
+							<Text className=" text-2xl font-bold">
+								{props.product.name}
 							</Text>
-							<Spacer />
-							<Text className=" line-through">
-								{props.product.basePrice}₫
+							<Text className="  text-md font-semibold">
+								{props.product.rating}★
 							</Text>
-							<Text></Text>
+							<Flex className="flex-row gap-2 font-semibold ">
+								<Text className="text-[#ff3e3e] text-3xl">
+									{props.promotedPrice}₫
+								</Text>
+								<Spacer />
+								<Text className="line-through text-xl">
+									{props.product.basePrice}₫
+								</Text>
+								<Flex className="ml-4 items-center px-4 text-xs text-[#ff3e3e] border rounded-lg border-[#ff3e3e]">
+									{promoteDetails.shortHand}
+								</Flex>
+							</Flex>
 						</Flex>
+						<Button
+							className="m-6 px-16 bg-[#ff3e3e] w-fit"
+							onClick={async () => {
+								const response = await fetch(
+									GetApi(ServiceEndPoint.items),
+									BuildOption(),
+								);
+								if (response.status != 200) {
+									alert(response.statusText);
+								}
+							}}
+						>
+							Thêm vào giỏ hàng
+						</Button>
+						<Typography>Thông tin chung:</Typography>
+						<Text>Hãng sản xuất: {props.product.manufacturer}</Text>
+						<Typography>Bảo hành: 36 tháng</Typography>
 					</Flex>
-					<Button className="m-6 px-16 bg-[#ff3e3e] w-fit">
-						Thêm vào giỏ hàng
-					</Button>
 				</Flex>
 			</CardBody>
 		</Card>

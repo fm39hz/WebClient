@@ -15,9 +15,6 @@ const CartPage1 = () => {
 				),
 			);
 			setItems(((await _cart.json()) as CartProps).shoppingItems);
-
-			console.log('fetched');
-			console.log(items);
 		};
 		fetchData();
 	}, []);

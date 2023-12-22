@@ -68,17 +68,22 @@ export type CartProps = {
 	id: number;
 };
 
+export type PromoteDetailsProps = {
+	details: string;
+	shortHand: string;
+};
+
 export type CpuProps = {
 	socket: string;
-	tdp: number;
-	core: number;
-	thread: number;
-	frequency: number;
+	tdp: string;
+	core: string;
+	thread: string;
+	frequency: string;
 	id: number;
 };
 
 export type VgaProps = {
-	frequency: number;
-	vram: number;
+	frequency: string;
+	vram: string;
 	id: number;
 };

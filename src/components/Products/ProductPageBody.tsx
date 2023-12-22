@@ -1,5 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react';
-import { Card, CardBody } from '@material-tailwind/react';
+import { Card, CardBody, Typography } from '@material-tailwind/react';
 import { Table, TableCell } from '@mui/material';
 import { GetApi, ServiceEndPoint } from 'Constant';
 import { CpuProps, VgaProps } from 'Types';
@@ -11,8 +11,8 @@ type ProductPageBody = {
 };
 
 const GetCpuSpecificationTable = (cpu: CpuProps) => (
-	<Table>
-		<TableCell className="bg-[#f7f7f7] border-separate">
+	<Table className="border">
+		<TableCell className="bg-[#f7f7f7] border-separate w-fit text-lg font-bold">
 			<Text>Socket</Text>
 			<Text>Nhân</Text>
 			<Text>Luồng</Text>
@@ -71,13 +71,23 @@ const ProductPageBody = (props: ProductPageBody) => {
 			);
 			setSpecification(await _specification.json());
 		};
-		fetchSpecification();
-	}, []);
+		if (props.specificationId !== undefined) {
+			fetchSpecification();
+		}
+	}, [props]);
 	return (
 		<Card>
 			<CardBody>
-				<Flex className="border">
-					<Table>{GetTable(props.type, specification)}</Table>
+				<Flex className="flex-col">
+					<Flex className="flex-col gap-4">
+						<Typography className="text-xl font-semibold">
+							Thông tin sản phẩm
+						</Typography>
+						<Typography className="text-2xl font-bold">
+							THÔNG SỐ KĨ THUẬT:
+						</Typography>
+					</Flex>
+					{GetTable(props.type, specification)}
 				</Flex>
 			</CardBody>
 		</Card>

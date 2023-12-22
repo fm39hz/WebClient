@@ -2,6 +2,7 @@ export const enum ServiceEndPoint {
 	dummy = '/',
 	products = '/Products/',
 	promote = '/Products/Promoted/',
+	promoteDetails = '/Products/PromoteDetails/',
 	login = '/Auth/Login/',
 	logout = 'Auth/Logout/',
 	isLoggedIn = '/Users/IsLoggedIn/',
