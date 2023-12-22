@@ -2,8 +2,6 @@ import { Flex, Text } from '@chakra-ui/react';
 import {
 	ArrowLeftCircleIcon,
 	Cog6ToothIcon,
-	InboxIcon,
-	QuestionMarkCircleIcon,
 	UserIcon,
 } from '@heroicons/react/24/solid';
 import {
@@ -79,19 +77,6 @@ const SignedInIcon = (props: SignedInIconProps) => {
 
 					<Typography variant="small" className="font-medium">
 						Edit Profile
-					</Typography>
-				</MenuItem>
-				<MenuItem className="flex items-center gap-2">
-					<InboxIcon className="w-4 h-4" />
-
-					<Typography variant="small" className="font-medium">
-						Inbox
-					</Typography>
-				</MenuItem>
-				<MenuItem className="flex items-center gap-2">
-					<QuestionMarkCircleIcon className="w-4 h-4" />
-					<Typography variant="small" className="font-medium">
-						Help
 					</Typography>
 				</MenuItem>
 				<hr className="my-2 border-blue-gray-50" />

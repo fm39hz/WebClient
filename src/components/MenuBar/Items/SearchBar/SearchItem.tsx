@@ -1,9 +1,11 @@
 import { Image } from '@chakra-ui/react';
 import { MenuItem } from '@material-tailwind/react';
 import { ProductProps } from 'Types';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const SearchItem = (props: ProductProps) => {
+	const [isFocus, setIsFocus] = useState(false);
 	return (
 		<MenuItem>
 			<Link

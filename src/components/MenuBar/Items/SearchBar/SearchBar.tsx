@@ -2,11 +2,11 @@ import { Flex } from '@chakra-ui/react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/solid';
 import {
 	IconButton,
+	Input,
 	Popover,
 	PopoverContent,
 	PopoverHandler,
 } from '@material-tailwind/react';
-import { Input } from '@mui/material';
 import { useEffect, useState } from 'react';
 import SearchItem from './SearchItem';
 import { GetApi, ServiceEndPoint } from 'Constant';
@@ -49,14 +49,16 @@ const SearchBar = () => {
 				offset={-48}
 				placement="top-start"
 			>
-				<PopoverHandler>
+				<PopoverHandler
+					onFocus={() => setIsFocus(true)}
+					onBlur={() => setIsFocus(true)}
+				>
 					<Flex className="flex-row">
 						<Input
-							className="text-sm m-2 w-96"
+							className="text-sm w-96"
 							placeholder="Bạn cần tìm gì?"
 							onChange={handleSearch}
-							onFocus={() => setIsFocus(true)}
-							onBlur={() => setIsFocus(true)}
+							crossOrigin="search"
 						/>
 						<IconButton className="bg-inherit text-inherit">
 							<MagnifyingGlassIcon className="w-5 h-5 my-3" />
