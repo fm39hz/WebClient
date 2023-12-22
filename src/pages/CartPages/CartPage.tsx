@@ -15,23 +15,36 @@ import CartPage2 from './CartPage2';
 import CartPage3 from './CartPage3';
 import CartPage4 from './CartPage4';
 import { GetApi, ServiceEndPoint } from 'Constant';
-import { CartProps } from 'Types';
+import { ShippingInformationProps } from 'Types';
 import { GetItem } from 'utils/StorageUtils';
 
 const CartPages = () => {
-	const [cart, setCart] = useState({} as CartProps);
+	const [step, setStep] = useState(0);
 	const [cartPrice, setCartPrice] = useState(0);
 	const [itemChanged, setitemChanged] = useState(false);
+	const [shippingInfo, setShippingInfo] = useState({
+		userUid: '',
+		name: '',
+		phoneNumber: '',
+		address: '',
+		gender: '',
+	} as ShippingInformationProps);
+	const BuildOption = () => {
+		return {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(shippingInfo),
+		};
+	};
+	const navigate = useNavigate();
 	useEffect(() => {
 		const fetchCart = async () => {
 			try {
-				const _cart = await fetch(
-					GetApi(ServiceEndPoint.cart).concat(GetItem('uid')),
-				);
 				const _cartPrice = await fetch(
 					GetApi(ServiceEndPoint.cartPrice).concat(GetItem('uid')),
 				);
-				setCart(await _cart.json());
 				setCartPrice(await _cartPrice.json());
 			} catch (error) {
 				console.error('Error fetching data:', error);
@@ -42,12 +55,14 @@ const CartPages = () => {
 	}, [itemChanged]);
 	const Steps = [
 		<CartPage1 itemChanged={setitemChanged} />,
-		<CartPage2 price={cartPrice} />,
-		<CartPage3 />,
+		<CartPage2
+			price={cartPrice}
+			setShippingInfo={setShippingInfo}
+			shippingInfo={shippingInfo}
+		/>,
+		<CartPage3 shippingInfo={shippingInfo} finalPrice={cartPrice} />,
 		<CartPage4 />,
 	];
-	const navigate = useNavigate();
-	const [step, setStep] = useState(0);
 	return (
 		<Card className="flex-col m-8 bg-teal-50 p-4 rounded-md min-w-fit">
 			<CardHeader className="items-center m-6 justify-center">
@@ -59,39 +74,74 @@ const CartPages = () => {
 				</Flex>
 			</CardBody>
 			<CardFooter className="pt-0">
-				<Flex className="flex-col border bg-white  rounded-xl">
-					<Text className="flex-row text-xl m-4 gap-4 bg-blue-gray-50 border rounded-md text-right">
-						Tổng tiền: {cartPrice.toLocaleString()}₫
-					</Text>
-					<Flex className="flex-row m-4">
+				{step == 3 ? (
+					<Flex className="flex-row m-4 justify-center">
 						<Button
 							className="flex bg-black text-white rounded-xl"
-							onClick={() => {
-								if (step > 0) {
-									setStep(step - 1);
-								} else {
-									navigate('/Home');
-								}
-							}}
+							onClick={() => navigate('/Home')}
 						>
 							<Flex className="flex-row m-3 items-center gap-2">
 								<ArrowLeftIcon className="h-4 w-4" />
-								Quay lại
+								Về trang chủ
 							</Flex>
 						</Button>
-						<Spacer />
-						<Button
-							className="flex items-center gap-2"
-							disabled={cartPrice == 0}
-							onClick={() => {
-								if (step < 3) setStep(step + 1);
-							}}
-						>
-							Đặt hàng ngay
-							<ArrowRightIcon className="h-4 w-4" />
-						</Button>
 					</Flex>
-				</Flex>
+				) : (
+					<Flex className="flex-col border bg-white  rounded-xl">
+						<Text className="flex-row text-xl m-4 gap-4 bg-blue-gray-50 border rounded-md text-right">
+							Tổng tiền: {cartPrice.toLocaleString()}₫
+						</Text>
+						<Flex className="flex-row m-4">
+							<Button
+								className="flex bg-black text-white rounded-xl"
+								onClick={() => {
+									if (step > 0) {
+										setStep(step - 1);
+									} else {
+										navigate('/Home');
+									}
+								}}
+							>
+								<Flex className="flex-row m-3 items-center gap-2">
+									<ArrowLeftIcon className="h-4 w-4" />
+									Quay lại
+								</Flex>
+							</Button>
+							<Spacer />
+							<Button
+								className="flex items-center gap-2"
+								disabled={
+									(cartPrice == 0 && step == 0) ||
+									(shippingInfo.gender === '' &&
+										shippingInfo.name === '' &&
+										shippingInfo.phoneNumber === '' &&
+										shippingInfo.address === '' &&
+										step == 1)
+								}
+								onClick={async () => {
+									if (step == 3) {
+										const response = await fetch(
+											GetApi(ServiceEndPoint.cart).concat(
+												'CheckOut',
+											),
+											BuildOption(),
+										);
+										if (response.status == 200) {
+											setStep(step + 1);
+											return;
+										}
+										alert(response.statusText);
+										return;
+									}
+									setStep(step + 1);
+								}}
+							>
+								{step < 3 ? 'Đặt hàng ngay' : 'Xác nhận'}
+								<ArrowRightIcon className="h-4 w-4" />
+							</Button>
+						</Flex>
+					</Flex>
+				)}
 			</CardFooter>
 		</Card>
 	);
