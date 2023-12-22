@@ -1,9 +1,5 @@
 import { Flex, Text } from '@chakra-ui/react';
-import {
-	ArrowLeftCircleIcon,
-	Cog6ToothIcon,
-	UserIcon,
-} from '@heroicons/react/24/solid';
+import { ArrowLeftCircleIcon, UserIcon } from '@heroicons/react/24/solid';
 import {
 	Avatar,
 	Button,
@@ -14,7 +10,7 @@ import {
 	Typography,
 } from '@material-tailwind/react';
 import { GetApi, ServiceEndPoint } from 'Constant';
-import { UserProps } from 'Types';
+import { FireBaseUserProps } from 'Types';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { GetItem } from 'utils/StorageUtils';
@@ -24,7 +20,7 @@ type SignedInIconProps = {
 };
 
 const SignedInIcon = (props: SignedInIconProps) => {
-	const [user, setUser] = useState({} as UserProps);
+	const [user, setUser] = useState({} as FireBaseUserProps);
 	const [isLoading, setIsLoading] = useState(true);
 	const navigate = useNavigate();
 	useEffect(() => {
@@ -71,13 +67,6 @@ const SignedInIcon = (props: SignedInIconProps) => {
 							</Typography>
 						</Flex>
 					</Link>
-				</MenuItem>
-				<MenuItem className="flex items-center gap-2">
-					<Cog6ToothIcon className="w-4 h-4" />
-
-					<Typography variant="small" className="font-medium">
-						Edit Profile
-					</Typography>
 				</MenuItem>
 				<hr className="my-2 border-blue-gray-50" />
 				<MenuItem

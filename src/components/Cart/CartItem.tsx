@@ -10,11 +10,11 @@ import {
 import { Input } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { GetApi, ServiceEndPoint } from 'Constant';
-import { ShoppingItems } from 'Types';
+import { ShoppingItemsProps } from 'Types';
 import { TrashIcon } from '@heroicons/react/24/solid';
 
 type CartItemProps = {
-	product: ShoppingItems;
+	product: ShoppingItemsProps;
 	itemChanged: CallableFunction;
 };
 

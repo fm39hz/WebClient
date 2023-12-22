@@ -3,14 +3,14 @@ import CartItem from '../../components/Cart/CartItem';
 import { Typography } from '@material-tailwind/react';
 import { useEffect, useState } from 'react';
 import { GetApi, ServiceEndPoint } from 'Constant';
-import { CartProps, ShoppingItems } from 'Types';
+import { CartProps, ShoppingItemsProps } from 'Types';
 
 type CartPage1Props = {
 	itemChanged: CallableFunction;
 };
 
 const CartPage1 = (props: CartPage1Props) => {
-	const [items, setItems] = useState({} as ShoppingItems[]);
+	const [items, setItems] = useState({} as ShoppingItemsProps[]);
 	useEffect(() => {
 		const fetchData = async () => {
 			const _cart = await fetch(

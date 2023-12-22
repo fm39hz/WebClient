@@ -1,4 +1,4 @@
-export type ShoppingItems = {
+export type ShoppingItemsProps = {
 	appliedPromoteStrategy: {
 		details: string;
 	};
@@ -35,7 +35,32 @@ export type ShippingInformationProps = {
 	gender: string;
 };
 
-export type UserProps = {
+export type OrderProps = {
+	user: LocalUserProps;
+	shippingTarget: ShippingInformationProps;
+	items: ShoppingItemsProps[];
+	status: string;
+	invoice: InvoiceProps;
+	id: number;
+};
+
+export type InvoiceProps = {
+	userUid: string;
+	orderId: number;
+	createdTime: string;
+	id: number;
+};
+
+export type LocalUserProps = {
+	uid: string;
+	credential: string;
+	isAdmin: number;
+	cart: CartProps;
+	shippingInfomations: ShippingInformationProps[];
+	invoices: InvoiceProps[];
+};
+
+export type FireBaseUserProps = {
 	uid: string;
 	displayName: string;
 	email: string;
@@ -74,7 +99,7 @@ export type UserProps = {
 
 export type CartProps = {
 	userUid: string;
-	shoppingItems: ShoppingItems[];
+	shoppingItems: ShoppingItemsProps[];
 	id: number;
 };
 
