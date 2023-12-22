@@ -82,14 +82,19 @@ const ProductPageHeader = (props: ProductPageHeaderProps) => {
 									GetApi(ServiceEndPoint.items),
 									BuildOption(),
 								);
-								if (response.status != 200) {
-									alert(response.statusText);
+								if (response.status == 200) {
+									return;
+								}
+								if (response.status == 201) {
+									window.location.reload();
 								}
 							}}
 						>
 							Thêm vào giỏ hàng
 						</Button>
-						<Typography>Thông tin chung:</Typography>
+						<Typography>
+							Thông tin chung: {props.product.description}
+						</Typography>
 						<Text>Hãng sản xuất: {props.product.manufacturer}</Text>
 						<Typography>Bảo hành: 36 tháng</Typography>
 					</Flex>

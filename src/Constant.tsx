@@ -10,6 +10,7 @@ export const enum ServiceEndPoint {
 	vga = '/Vgas/',
 	users = '/Users/',
 	cart = '/Cart/',
+	cartPrice = '/Cart/GetPrice/',
 	items = '/ShoppingItems/',
 	promotedPrice = '/ShoppingItems/GetPrice/',
 }
