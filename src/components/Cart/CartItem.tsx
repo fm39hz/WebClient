@@ -106,7 +106,7 @@ const CartItem = (props: CartItemProps) => {
 						onChange={(target) => {
 							const _quantity = Number(target.target.value);
 							if (
-								_quantity < props.product.target.inStock &&
+								_quantity <= props.product.target.inStock &&
 								_quantity > 0
 							)
 								setQuantity(_quantity);
