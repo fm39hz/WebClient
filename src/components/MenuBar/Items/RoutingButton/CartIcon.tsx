@@ -20,7 +20,13 @@ const CartIcon = (props: CartIconProps) => {
 					GetApi(ServiceEndPoint.cart).concat(GetItem('uid')),
 				);
 				var _inCart = ((await _cart.json()) as CartProps).shoppingItems;
-				setInCart(Array.from(_inCart).length);
+				setInCart(
+					Array.from(_inCart).filter(
+						(item) =>
+							item.orderId === null &&
+							item.orderStatus === 'Waiting',
+					).length,
+				);
 			} catch (error) {
 				console.error('Error fetching data:', error);
 			}

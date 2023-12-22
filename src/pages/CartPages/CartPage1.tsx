@@ -18,7 +18,14 @@ const CartPage1 = (props: CartPage1Props) => {
 					localStorage.getItem('uid')!,
 				),
 			);
-			setItems(((await _cart.json()) as CartProps).shoppingItems);
+			setItems(
+				Array.from(
+					((await _cart.json()) as CartProps).shoppingItems,
+				).filter(
+					(item) =>
+						item.orderId === null && item.orderStatus === 'Waiting',
+				),
+			);
 		};
 		fetchData();
 	}, []);
@@ -31,19 +38,13 @@ const CartPage1 = (props: CartPage1Props) => {
 							Không có sản phẩm trong giỏ hàng
 						</Typography>
 					) : (
-						Array.from(items)
-							.filter(
-								(item) =>
-									item.orderId === null &&
-									item.orderStatus === 'Waiting',
-							)
-							.map((products) => (
-								<CartItem
-									key={products.id}
-									product={products}
-									itemChanged={props.itemChanged}
-								/>
-							))
+						Array.from(items).map((products) => (
+							<CartItem
+								key={products.id}
+								product={products}
+								itemChanged={props.itemChanged}
+							/>
+						))
 					)}
 				</Flex>
 			</CardBody>
