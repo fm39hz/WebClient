@@ -5,7 +5,7 @@ import {
 	IdentificationIcon,
 	ShoppingBagIcon,
 } from '@heroicons/react/24/solid';
-import { CardHeader, Typography } from '@material-tailwind/react';
+import { Typography } from '@material-tailwind/react';
 import { useEffect } from 'react';
 
 type CartProgress = {
@@ -17,8 +17,8 @@ const CartProgressBar = (props: CartProgress) => {
 		step >= current ? ' text-[#ff3e3e]' : ' text-black';
 	useEffect(() => {}, [props.step]);
 	return (
-		<CardHeader className="flex flex-row mx-2 p-4 rounded-md px-72">
-			<Flex className="h-fit w-full gap-10 justify-between mt-5">
+		<Flex className="flex-row mx-2 px-64 rounded-md">
+			<Flex className="h-fit mb-4 w-full gap-4 justify-between mt-5">
 				<Flex
 					className={'flex-col items-center'.concat(
 						checkOutStep(props.step, 0),
@@ -54,7 +54,7 @@ const CartProgressBar = (props: CartProgress) => {
 					<Typography className="text-center">Hoàn tất</Typography>
 				</Flex>
 			</Flex>
-		</CardHeader>
+		</Flex>
 	);
 };
 export default CartProgressBar;

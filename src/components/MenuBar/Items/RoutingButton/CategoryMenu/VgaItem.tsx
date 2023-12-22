@@ -1,15 +1,9 @@
 import { MenuItem, Menu, MenuList, Button } from '@chakra-ui/react';
 import { MenuHandler } from '@material-tailwind/react';
 import { GetApi, ServiceEndPoint } from 'Constant';
-import { ProductProps } from 'components/Products/ProductCard';
+import { VgaProps } from 'Types';
 import { useState, useEffect } from 'react';
 
-type VgaProps = {
-	frequency: number;
-	vram: number;
-	product: ProductProps;
-	id: number;
-};
 const getNonDuplicatedValues = (arr: any[]) =>
 	arr.filter((item, index) => {
 		var _arr = arr;

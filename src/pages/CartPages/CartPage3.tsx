@@ -1,61 +1,87 @@
-import { Card, CardBody, Flex, Spacer } from '@chakra-ui/react';
+import { Card, CardBody, Flex } from '@chakra-ui/react';
 import { Radio, Typography } from '@material-tailwind/react';
-import { Divider } from '@mui/material';
+import { Divider, Table, TableCell, TableRow } from '@mui/material';
+import { ShippingInformationProps } from 'Types';
 
-const CartPage3 = () => {
+type CartPage3Props = {
+	shippingInfo: ShippingInformationProps;
+	finalPrice: number;
+};
+
+const CartPage3 = (props: CartPage3Props) => {
 	return (
 		<Card className="w-50 bg-white rounded-xl">
 			<CardBody className="justify-center m-2">
-				<Flex className="flex-col mt-3 mb-3 gap-3">
-					<Typography className="text-2xl">
+				<Flex className="flex-col px-6 w-full">
+					<Typography className="text-2xl mt-3 mb-3 ">
 						Thông tin đặt hàng
 					</Typography>
-					<Flex>
-						<Typography>Khách hàng</Typography>
-						<Spacer />
-						<Flex>Ngô Tiến Long</Flex>
+					<Flex className="flex-col gap-3">
+						<Divider />
+						<Table>
+							<TableCell>
+								<TableRow>
+									<Typography>Khách hàng</Typography>
+								</TableRow>
+								<TableRow>
+									<Typography>Số điện thoại</Typography>
+								</TableRow>
+								<TableRow>
+									<Typography>Địa chỉ nhận hàng</Typography>
+								</TableRow>
+								<TableRow>
+									<Typography>Tạm tính</Typography>
+								</TableRow>
+								<TableRow>
+									<Typography>Phí vận chuyển</Typography>
+								</TableRow>
+								<TableRow>
+									<Typography>Tổng tiền</Typography>
+								</TableRow>
+							</TableCell>
+							<TableCell>
+								<TableRow>
+									<Typography>
+										{props.shippingInfo.name}
+									</Typography>
+								</TableRow>
+								<TableRow>
+									<Typography>
+										{props.shippingInfo.phoneNumber}
+									</Typography>
+								</TableRow>
+								<TableRow>
+									<Typography>
+										{props.shippingInfo.address}
+									</Typography>
+								</TableRow>
+								<TableRow>
+									<Typography className="text-red-500">
+										{props.finalPrice.toLocaleString()}₫
+									</Typography>
+								</TableRow>
+								<TableRow>
+									<Typography className="text-red-500">
+										Miễn phí
+									</Typography>
+								</TableRow>
+								<TableRow>
+									<Typography className="text-red-500">
+										{props.finalPrice.toLocaleString()}₫
+									</Typography>
+								</TableRow>
+							</TableCell>
+						</Table>
+						<Typography className="text-2xl">
+							Chọn hình thức thanh toán
+						</Typography>
+						<Radio
+							name="type"
+							label="Thanh toán COD"
+							defaultChecked
+							crossOrigin=""
+						/>
 					</Flex>
-					<Flex>
-						<Typography>Số điện thoại</Typography>
-						<Spacer />
-						<Flex>0967981332</Flex>
-					</Flex>
-					<Flex>
-						<Typography>Địa chỉ nhận hàng</Typography>
-						<Spacer />
-						<Flex>Hoàng Mai, Hà Nội</Flex>
-					</Flex>
-					<Flex>
-						<Typography>Tạm tính</Typography>
-						<Spacer />
-						<Flex className="text-red-500">
-							<Typography>3,290,000₫</Typography>
-						</Flex>
-					</Flex>
-					<Flex>
-						<Typography>Phí vận chuyển</Typography>
-						<Spacer />
-						<Flex className="text-red-500">
-							<Typography>Miễn phí</Typography>
-						</Flex>
-					</Flex>
-					<Flex>
-						<Typography>Tổng tiền</Typography>
-						<Spacer />
-						<Flex className="text-red-500">
-							<Typography>3,290,000₫</Typography>
-						</Flex>
-					</Flex>
-					<Divider />
-					<Typography className="text-2xl">
-						Chọn hình thức thanh toán
-					</Typography>
-					<Radio
-						name="type"
-						label="Thanh toán COD"
-						defaultChecked
-						crossOrigin=""
-					/>
 				</Flex>
 			</CardBody>
 		</Card>

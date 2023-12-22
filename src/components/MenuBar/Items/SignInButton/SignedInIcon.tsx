@@ -1,11 +1,5 @@
-import { Flex } from '@chakra-ui/react';
-import {
-	ArrowLeftCircleIcon,
-	Cog6ToothIcon,
-	InboxIcon,
-	QuestionMarkCircleIcon,
-	UserIcon,
-} from '@heroicons/react/24/solid';
+import { Flex, Text } from '@chakra-ui/react';
+import { ArrowLeftCircleIcon, UserIcon } from '@heroicons/react/24/solid';
 import {
 	Avatar,
 	Button,
@@ -16,23 +10,25 @@ import {
 	Typography,
 } from '@material-tailwind/react';
 import { GetApi, ServiceEndPoint } from 'Constant';
-import { UserProps } from 'pages/ProfilePage';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { FireBaseUserProps } from 'Types';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { GetItem } from 'utils/StorageUtils';
 
 type SignedInIconProps = {
-	setSignIn: Dispatch<SetStateAction<boolean>>;
+	setIsSignedIn: CallableFunction;
 };
 
 const SignedInIcon = (props: SignedInIconProps) => {
-	const [user, setUser] = useState({} as UserProps);
+	const [user, setUser] = useState({} as FireBaseUserProps);
 	const [isLoading, setIsLoading] = useState(true);
+	const navigate = useNavigate();
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const response = await fetch(
 					GetApi(ServiceEndPoint.users).concat(
-						'/' + localStorage.getItem('uid')!,
+						localStorage.getItem('uid')!,
 					),
 				);
 				const data = await response.json();
@@ -44,7 +40,7 @@ const SignedInIcon = (props: SignedInIconProps) => {
 			}
 		};
 		fetchData();
-	}, []);
+	}, [GetItem('uid')]);
 	return (
 		<Menu>
 			<MenuHandler>
@@ -55,9 +51,9 @@ const SignedInIcon = (props: SignedInIconProps) => {
 						<Avatar src={user.photoUrl} className="w-8 h-8" />
 					)}
 					<Flex className="flex-col items-center">
-						<Typography className="text-white mr-2 text-sm">
+						<Text className="text-white mr-2 text-sm">
 							{user.displayName}
-						</Typography>
+						</Text>
 					</Flex>
 				</Button>
 			</MenuHandler>
@@ -72,37 +68,19 @@ const SignedInIcon = (props: SignedInIconProps) => {
 						</Flex>
 					</Link>
 				</MenuItem>
-				<MenuItem className="flex items-center gap-2">
-					<Cog6ToothIcon className="w-4 h-4" />
-
-					<Typography variant="small" className="font-medium">
-						Edit Profile
-					</Typography>
-				</MenuItem>
-				<MenuItem className="flex items-center gap-2">
-					<InboxIcon className="w-4 h-4" />
-
-					<Typography variant="small" className="font-medium">
-						Inbox
-					</Typography>
-				</MenuItem>
-				<MenuItem className="flex items-center gap-2">
-					<QuestionMarkCircleIcon className="w-4 h-4" />
-					<Typography variant="small" className="font-medium">
-						Help
-					</Typography>
-				</MenuItem>
 				<hr className="my-2 border-blue-gray-50" />
 				<MenuItem
 					className="flex items-center gap-2 "
 					onClick={async () => {
 						await fetch(
 							GetApi(ServiceEndPoint.logout).concat(
-								'/' + localStorage.getItem('uid')!,
+								'/',
+								GetItem('uid')!,
 							),
 						);
+						props.setIsSignedIn(false);
 						localStorage.removeItem('uid');
-						props.setSignIn(false);
+						navigate('/Home');
 					}}
 				>
 					<ArrowLeftCircleIcon className="w-4 h-4" />

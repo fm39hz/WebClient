@@ -1,31 +1,30 @@
-import { Flex, Image } from '@chakra-ui/react';
+import { Flex, Image, Text } from '@chakra-ui/react';
 import { Card, Typography } from '@material-tailwind/react';
 import { Divider } from '@mui/material';
 import { GetApi, ServiceEndPoint } from 'Constant';
+import { ProductProps } from 'Types';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-export type ProductProps = {
-	name: string;
-	specificationId: number;
-	description: string;
-	imageUrl: string;
-	basePrice: number;
-	inStock: number;
-	manufacturer: string;
-	reviewCount: number;
-	rating: number;
+type ProductCartProps = {
 	id: number;
 };
 
-const ProductCard = (props: ProductProps) => {
+const ProductCard = (props: ProductCartProps) => {
 	const [promotedPrice, setPromotedPrice] = useState(0);
+	const [product, setProduct] = useState({} as ProductProps);
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
 				const _promotedPrice = await fetch(
-					GetApi(ServiceEndPoint.promote).concat('/' + props.id),
+					GetApi(ServiceEndPoint.promote).concat(props.id.toString()),
 				);
+				const _product = await fetch(
+					GetApi(ServiceEndPoint.products).concat(
+						props.id.toString(),
+					),
+				);
+				setProduct(await _product.json());
 				setPromotedPrice(await _promotedPrice.json());
 			} catch (error) {
 				console.error('Error fetching data:', error);
@@ -38,16 +37,16 @@ const ProductCard = (props: ProductProps) => {
 			<Card className="flex flex-col bg-[#ececec] w-60 h-92 rounded-md shadow-lg hover:shadow-lg transition duration-300 ease-in-out border items-center">
 				<Image
 					className="object-cover overflow-hidden mb-1"
-					src={props.imageUrl}
-					alt={props.name}
+					src={product.imageUrl}
+					alt={product.name}
 				/>
 				<Divider className="w-full" />
 				<Flex className="flex-col mx-2 w-full">
-					<Typography className="text-xl h-12 text-black font-semibold mx-1">
-						{props.name}
-					</Typography>
+					<Text className="text-xl h-12 text-black font-semibold mx-1">
+						{product.name}
+					</Text>
 					<Typography className="mx-1 font-semibold text-gray-400 line-through">
-						{Number(props.basePrice).toLocaleString()}₫
+						{Number(product.basePrice).toLocaleString()}₫
 					</Typography>
 					<Typography className="mx-1 text-red-500 font-semibold">
 						{promotedPrice.toLocaleString()}₫
@@ -56,16 +55,16 @@ const ProductCard = (props: ProductProps) => {
 				<Flex className="flex-row items-left bg-gray-100 rounded-b-md w-full p-2 mt-1 justify-between gap-4">
 					<Flex className="flex-col">
 						<Typography className="text-orange-600">
-							{props.rating}★
+							{product.rating}★
 						</Typography>
 						<Typography className="text-gray-600">
-							({props.reviewCount} đánh giá)
+							({product.reviewCount} đánh giá)
 						</Typography>
 					</Flex>
 					<Flex className="flex-col justify-end">
 						<Typography className="text-gray-600 items-baseline">
-							{props.inStock > 0
-								? props.inStock + ' sản phẩm'
+							{product.inStock > 0
+								? product.inStock + ' sản phẩm'
 								: 'Liên hệ'}
 						</Typography>
 					</Flex>
