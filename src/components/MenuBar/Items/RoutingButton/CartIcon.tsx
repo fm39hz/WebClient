@@ -21,11 +21,9 @@ const CartIcon = (props: CartIconProps) => {
 				);
 				var _inCart = ((await _cart.json()) as CartProps).shoppingItems;
 				setInCart(
-					Array.from(_inCart).filter(
-						(item) =>
-							item.orderId === null &&
-							item.orderStatus === 'Waiting',
-					).length,
+					Array.from(_inCart).filter((item) => {
+						item.orderId === null && item.orderStatus === 'Waiting';
+					}).length,
 				);
 			} catch (error) {
 				console.error('Error fetching data:', error);

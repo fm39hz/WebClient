@@ -33,7 +33,9 @@ const CartPage1 = (props: CartPage1Props) => {
 		<Card className="w-50 bg-white rounded-xl min-w-max w-fit border-spacing-3">
 			<CardBody className="justify-center m-2">
 				<Flex className="flex-col w-fit h-fit gap-2">
-					{items.length == 0 ? (
+					{Array.from(items).filter((item) => {
+						item.orderId === null && item.orderStatus === 'Waiting';
+					}).length == 0 ? (
 						<Typography className="p-32">
 							Không có sản phẩm trong giỏ hàng
 						</Typography>
