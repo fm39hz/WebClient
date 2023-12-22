@@ -27,7 +27,7 @@ const CartPage1 = (props: CartPage1Props) => {
 			<CardBody className="justify-center m-2">
 				<Flex className="flex-col w-fit h-fit gap-2">
 					{items.length == 0 ? (
-						<Typography>
+						<Typography className="p-32">
 							Không có sản phẩm trong giỏ hàng
 						</Typography>
 					) : (
