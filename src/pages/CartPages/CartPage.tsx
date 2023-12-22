@@ -49,8 +49,8 @@ const CartPages = () => {
 	const navigate = useNavigate();
 	const [step, setStep] = useState(0);
 	return (
-		<Card className="flex-col m-8 bg-white p-4 rounded-md min-w-full">
-			<CardHeader className="items-center gap-8 m-6 justify-center">
+		<Card className="flex-col m-8 bg-teal-50 p-4 rounded-md min-w-fit">
+			<CardHeader className="items-center m-6 justify-center">
 				<CartProgressBar step={step} />
 			</CardHeader>
 			<CardBody className="items-center gap-8 m-6 justify-center">
@@ -59,12 +59,11 @@ const CartPages = () => {
 				</Flex>
 			</CardBody>
 			<CardFooter className="pt-0">
-				<Flex className="flex-col">
-					<Flex className="flex-row text-xl my-8 gap-4 border rounded-md justify-end">
-						<Text>Tổng tiền:</Text>
-						<Text>{cartPrice.toLocaleString()}₫</Text>
-					</Flex>
-					<Flex className="flex-row">
+				<Flex className="flex-col border bg-white  rounded-xl">
+					<Text className="flex-row text-xl m-4 gap-4 bg-blue-gray-50 border rounded-md text-right">
+						Tổng tiền: {cartPrice.toLocaleString()}₫
+					</Text>
+					<Flex className="flex-row m-4">
 						<Button
 							className="flex bg-black text-white rounded-xl"
 							onClick={() => {

@@ -86,7 +86,7 @@ const CartItem = (props: CartItemProps) => {
 			<Typography className="mt-1">
 				{props.product.target.name}
 			</Typography>
-			<Spacer className="px-56" />
+			<Spacer className="px-20" />
 			<Flex className="flex-col justify-end mx-4 w-28 text-end ">
 				<Typography className="line-through">
 					{(
