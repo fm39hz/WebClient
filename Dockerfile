@@ -1,13 +1,17 @@
-FROM node:20
+FROM node:20 AS base
 WORKDIR /web-client
 EXPOSE 3000
 
-COPY ./*.* ./
+COPY ./package*.json ./
+RUN npm install --verbose
+COPY . .
 
-RUN npm install
-COPY ./src ./src
-COPY ./.vitest ./.vitest
-
+FROM base as publish
 RUN npm run build
 
-CMD ["npm", "run", "dev"]
+FROM nginx:alpine AS production
+COPY --from=publish /web-client/nginx.conf /etc/nginx/conf.d/default.conf
+WORKDIR /usr/share/nginx/html
+RUN rm -rf ./*
+COPY --from=publish /web-client/dist .
+ENTRYPOINT [ "nginx", "-g", "daemon off;" ]
